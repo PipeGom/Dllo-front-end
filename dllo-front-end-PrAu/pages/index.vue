@@ -76,6 +76,10 @@
 <script>
 import axios from 'axios';
 
+definePageMeta({
+  layout: "blank",
+});
+
 export default {
   data() {
     return {
