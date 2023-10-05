@@ -53,6 +53,7 @@
     padding: 3%;
     border-radius: 20px;
     font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .carousel{
