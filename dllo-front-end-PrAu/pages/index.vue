@@ -2,9 +2,11 @@
 
 
    
-      <v-card class="carta" title="login" variant="tonal" >
+      <div class="container">
+      <v-card class="carta">
+        <img src="../src/logo.jpg" class="imagen"/>
       <v-form class="formulario"  fast-fail @submit.prevent @submit="login" >
-
+      
       <v-text-field 
         type="email"
         v-model="email"
@@ -20,32 +22,55 @@
        
       ></v-text-field>
 
-      <v-btn type="submit" class="boton" >Ingresar</v-btn>
+      <v-btn type="submit" class="boton rounded-pill" >Ingresar</v-btn>
 
     </v-form>
   </v-card>
+  </div>
 
 
 </template>
 
 <style scoped>
 
-.carta{
+.container{
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background-image: url("../src/fondo.jpg");
     
 }
+.carta{
+  width: 25%; /* Aumenta el ancho del v-card para que se ajuste al contenido */
+  padding: 50px; /* Agrega espacio alrededor del v-card */
+  border-radius: 10%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
 .formulario{
-  width: 30%;
-  
+  width: 100%;
 }
 .boton{
-  max-width: 50%;
-  margin-left: 40%;
+  min-width: 40%; /* Asegúrate de que el botón ocupe todo el ancho del formulario */
+  margin-left: 30%;
+  margin-top: 30px; /* Agrega espacio superior al botón */
+  border: 2px solid #230547;
+  transition: background-color 0.4s;
 }
+.boton:hover{
+  background-color: #230547;
+  color:white;
+}
+.imagen{
+  margin-left: 25%;
+  margin-bottom: 20px;
+  width: 50%;
+  height: 40%; 
+  border-radius: 50%; 
+  overflow: hidden; /* Recorta lo que salga */ 
+}
+
 </style>
 
 <script>
