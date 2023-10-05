@@ -75,6 +75,7 @@
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 definePageMeta({
   layout: "blank",
@@ -113,20 +114,36 @@ export default {
    
       const usuario = response.data.find(user => user.email === this.email && user.password === this.password);
 
+      
+
       if (usuario) {
-        
         this.$router.push('./landing'); 
-        
-        alert('Credenciales incorrectas');
+      }
+      else{
+        console.log("Entre al condicional porque el usuario es null")
+        Swal.fire({
+          icon: 'error',
+          title: 'Credenciales incorrectas',
+          text: 'Las credenciales ingresadas no se encuentran registradas',
+          footer: '<a href="">Tienes cuenta? Registrate aqui.</a>'
+        })
       }
     } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.log('Entre')
+          Swal.fire({
+          icon: 'error',
+          title: 'Credenciales incorrectas',
+          text: 'Las credenciales ingresadas no se encuentran registradas',
+          footer: '<a href="">Tienes cuenta? Registrate aqui.</a>'
+        })
+    } else {
       console.error('Error al autenticar:', error);
+    }
     }
   }
 }
-
 };
-
 </script>
 
  
