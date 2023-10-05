@@ -2,7 +2,7 @@
 
 
    
-      <v-card class="carta" variant="tonal" >
+      <v-card class="carta" title="login" variant="tonal" >
       <v-form class="formulario"  fast-fail @submit.prevent @submit="login" >
 
       <v-text-field 
@@ -78,17 +78,16 @@ export default {
   methods: {
   async login() {
     try {
-      // Realizar una solicitud GET a tu servidor para obtener los usuarios
-      const response = await axios.get('http://localhost:3000/user'); // Asegúrate de usar la URL correcta
+    
+      const response = await axios.get('http://localhost:3000/user'); 
 
-      // Buscar un usuario con el email y la contraseña ingresados
+   
       const usuario = response.data.find(user => user.email === this.email && user.password === this.password);
 
       if (usuario) {
-        // Autenticación exitosa, redirigir a la página deseada
-        this.$router.push('./landing'); // Cambia '/otra-pagina' por la ruta real
-      } else {
-        // Si no se encuentra un usuario, mostrar un mensaje de error
+        
+        this.$router.push('./landing'); 
+        
         alert('Credenciales incorrectas');
       }
     } catch (error) {
