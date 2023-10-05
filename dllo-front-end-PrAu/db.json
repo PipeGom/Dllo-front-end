@@ -1,11 +1,16 @@
 {
-    "user":[
-        {
-            "id":1,
-            "nombre": "Felipe",
-            "email": "F@gmail.com",
-            "password": "Hola"
-        }
-
-    ]
+  "user": [
+    {
+      "id": 1,
+      "nombre": "Felipe",
+      "email": "F@gmail.com",
+      "password": "Hola"
+    },
+    {
+      "email": "Luisfelipe@gmail.com",
+      "password": "Hola",
+      "nombre": "Felipe",
+      "id": 2
+    }
+  ]
 }

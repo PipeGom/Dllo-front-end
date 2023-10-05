@@ -19,8 +19,8 @@
       return {
         tab: null,
         items: [
-          { tab: "Inicio", route: "/landing" },
-          { tab: "Ingreso", route: "/" },
+          { tab: "Inicio", route: "/" },
+          { tab: "Ingreso", route: "/Login" },
         ],
       };
     },
