@@ -10,19 +10,19 @@
     <v-text-field 
       type="email"
       v-model="email"
-      label="email"
+      label="Correo"
       :rules="emailRules"
     ></v-text-field>
 
     <v-text-field
-      type="password"
+      :type="showPassword ? 'text' : 'password'"
       v-model="password"
-      label="password"
+      label="Contraseña"
       :rules="passwordRules"
      
     ></v-text-field>
-
-    <NuxtLink to="./register">¿No tienes una cuenta?</NuxtLink>
+    <v-checkbox @click="MostrarContraseña" label="Mostrar contraseña"></v-checkbox>
+   
 
     <v-btn type="submit" class="boton rounded-pill" >Ingresar</v-btn>
 
@@ -45,8 +45,8 @@
   
 }
 .carta{
-width: 25%; /* Aumenta el ancho del v-card para que se ajuste al contenido */
-padding: 50px; /* Agrega espacio alrededor del v-card */
+width: 25%; 
+padding: 50px; 
 border-radius: 10%;
 background-color: rgba(255, 255, 255, 0.8);
 }
@@ -54,9 +54,10 @@ background-color: rgba(255, 255, 255, 0.8);
 width: 100%;
 }
 .boton{
-min-width: 40%; /* Asegúrate de que el botón ocupe todo el ancho del formulario */
+min-width: 40%;
+width: 40%; 
 margin-left: 30%;
-margin-top: 30px; /* Agrega espacio superior al botón */
+margin-top: 30px;
 border: 2px solid #230547;
 transition: background-color 0.4s;
 }
@@ -70,14 +71,15 @@ margin-bottom: 20px;
 width: 50%;
 height: 40%; 
 border-radius: 50%; 
-overflow: hidden; /* Recorta lo que salga */ 
+overflow: hidden; 
 }
 
 </style>
 
-<script>
+<script >
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import { useUserStore } from '../stores/user';
 
 definePageMeta({
 layout: "blank",
@@ -88,6 +90,7 @@ data() {
   return {
     email: '',
     password: '',
+    showPassword: false,
     passwordRules: [
       value => {
         if (value) return true;
@@ -108,42 +111,64 @@ data() {
   };
 },
 methods: {
+
 async login() {
   try {
   
     const response = await axios.get('http://localhost:3000/user'); 
 
- 
     const usuario = response.data.find(user => user.email === this.email && user.password === this.password);
 
-    
+     /*Se usa pinia para almacenar el estado global del usuario*/
+     /*Guardamos el usuario autenticado*/
 
-    if (usuario) {
-      this.$router.push('./landing'); 
-    }
-    else if (this.email!=null && this.password){ 
-      console.log("Entre al condicional porque el usuario es null")
-      Swal.fire({
-        icon: 'error',
-        title: 'Credenciales incorrectas',
-        text: 'Las credenciales ingresadas no se encuentran registradas',
-        footer: '<a href="./register.vue">Tienes cuenta? Registrate aqui.</a>'
-      })
-    }
+    
+    const userStore = useUserStore();
+
+    
+    
+    userStore.setUser(usuario); 
+    console.log(userStore.getUser)
+
+    console.log(userStore)
+
+    switch (true) {
+
+          case usuario.credential === "mecanico":
+            //console.log('entre al mecanico')
+            this.$router.push('./inicio-mecanico');
+          
+
+          case usuario.credential === "admin": 
+
+          //console.log('entre al Admin')
+            this.$router.push('./inicio-admin');
+      
+        }
   } catch (error) {
-    if (error.response && error.response.status === 404) {
+    if (error.response && error.response.status === 404) { 
       console.log('Entre')
         Swal.fire({
         icon: 'error',
         title: 'Credenciales incorrectas',
         text: 'Las credenciales ingresadas no se encuentran registradas',
-        footer: '<a href="./register.vue">Tienes cuenta? Registrate aqui.</a>'
+        footer: '¿Tienes problemas con tu inicio de sesion? Comunicate con el area administrativa'
       })
-  } else {
+  } else { 
+    Swal.fire({
+        icon: 'error',
+        title: 'Credenciales incorrectas',
+        text: 'Las credenciales ingresadas no se encuentran registradas',
+        footer: '¿Tienes problemas con tu inicio de sesion? Comunicate con el area administrativa'
+      })
+
     console.error('Error al autenticar:', error);
   }
   }
-}
+},
+  MostrarContraseña() {
+      this.showPassword = !this.showPassword;
+    },
 }
 };
 </script>

@@ -19,10 +19,12 @@
     "vuetify-nuxt-module": "^0.5.13"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "axios": "^1.5.1",
     "json": "^11.0.0",
+    "pinia": "^2.1.6",
     "server": "^1.0.38",
     "sweetalert2": "^11.7.31",
     "vuelidate": "^0.7.7"

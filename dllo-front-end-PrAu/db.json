@@ -4,13 +4,56 @@
       "id": 1,
       "nombre": "Felipe",
       "email": "F@gmail.com",
-      "password": "Hola"
+      "password": "Hola",
+      "credential": "mecanico"
     },
     {
       "email": "Luisfelipe@gmail.com",
       "password": "Hola",
       "nombre": "Felipe",
-      "id": 2
+      "id": 2,
+      "credential": "mecanico"
+    },
+    {
+      "email": "C@gmail.com",
+      "password": "Hola2",
+      "nombre": "Carlos",
+      "id": 3,
+      "credential": "admin"
+    },
+    {
+      "email": "Pepe@gmail.com",
+      "password": "123",
+      "nombre": "Pepe",
+      "id": 4,
+      "credential": "admin"
+    },
+    {
+      "email": "",
+      "password": "",
+      "nombre": "",
+      "id": 5
+    },
+    {
+      "email": "Pepito@gmail.com",
+      "password": "PepitoPerez",
+      "nombre": "Prueba 2",
+      "id": 6,
+      "credential": "mecanico"
+    },
+    {
+      "email": "Pepito3@gmail.com",
+      "password": "PepitoPerez",
+      "nombre": "Prueba 3",
+      "id": 7,
+      "credential": "mecanico"
+    },
+    {
+      "email": "Pepito6@gmail.com",
+      "password": "PepitoPerez",
+      "nombre": "Prueba 5",
+      "id": 8,
+      "credential": "admin"
     }
   ]
 }
