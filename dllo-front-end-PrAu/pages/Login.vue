@@ -45,6 +45,7 @@
   
 }
 .carta{
+min-width: 600px;
 width: 25%; 
 padding: 50px; 
 border-radius: 10%;
@@ -123,27 +124,27 @@ async login() {
      /*Guardamos el usuario autenticado*/
 
     
-    const userStore = useUserStore();
-
+    const userStore = useUserStore();  
     
-    
-    userStore.setUser(usuario); 
-    console.log(userStore.getUser)
+    //console.log(userStore.getUser)
 
-    console.log(userStore)
+    //console.log(userStore)
 
+    console.log(usuario.credential);
     switch (true) {
 
-          case usuario.credential === "mecanico":
-            //console.log('entre al mecanico')
-            this.$router.push('./inicio-mecanico');
           
+          case usuario.credential === "mecanico":
+            userStore.setUser(usuario);     // Debe setearse aca de lo contrario siempre carga por defecto el mismo
+            console.log('entre al mecanico')
+            this.$router.push('./inicio-mecanico');
+            break;
 
           case usuario.credential === "admin": 
-
-          //console.log('entre al Admin')
+            userStore.setUser(usuario);  // Se debe volver hacer aqui
+            console.log('entre al Admin')
             this.$router.push('./inicio-admin');
-      
+            break;
         }
   } catch (error) {
     if (error.response && error.response.status === 404) { 

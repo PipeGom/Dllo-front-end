@@ -3,6 +3,7 @@
         
     </div>
 </template>
+
 <script>
 definePageMeta({
 layout: "inicio-admin-layout",

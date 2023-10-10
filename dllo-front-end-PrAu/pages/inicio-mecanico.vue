@@ -5,7 +5,7 @@
 </template>
 <script>
 definePageMeta({
-layout: "blank",
+layout: "inicio-mecanico-layout",
 });
 
 </script>

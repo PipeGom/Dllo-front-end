@@ -47,7 +47,7 @@
   ></v-select>
 
 
-   <v-btn type="submit" class="boton rounded-pill" >Registarse</v-btn>
+   <v-btn type="submit" class="boton rounded-pill" >Registrar</v-btn>
    
  
   </v-form>
