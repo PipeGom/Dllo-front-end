@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container">
+    <div class="container text-center">
         <v-card class="carta">
 
     <router-link to="./register">
@@ -29,7 +29,7 @@
 min-width: 600px;
 width: 40%; 
 padding: 50px; 
-border-radius: 10%;
+border-radius: 40px;
 background-color: rgba(255, 255, 255, 0.8);
 }
 

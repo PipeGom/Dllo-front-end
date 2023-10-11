@@ -54,6 +54,13 @@
       "nombre": "Prueba 5",
       "id": 8,
       "credential": "admin"
+    },
+    {
+      "email": "sdfsd",
+      "password": "sdfdsf",
+      "nombre": "jdjfs",
+      "id": 9,
+      "credential": "admin"
     }
   ]
 }
