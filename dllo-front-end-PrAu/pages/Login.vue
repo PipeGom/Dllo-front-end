@@ -87,6 +87,7 @@ layout: "blank",
 });
 
 export default {
+
 data() {
   return {
     email: '',

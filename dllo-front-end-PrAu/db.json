@@ -1,18 +1,18 @@
 {
   "user": [
     {
-      "id": 1,
-      "nombre": "Felipe",
-      "email": "F@gmail.com",
-      "password": "Hola",
-      "credential": "mecanico"
+      "nombre": "Rodrigo",
+      "email": "Rodrigo@gmail.com",
+      "password": "R",
+      "credential": "mecanico",
+      "id": 1
     },
     {
+      "nombre": "Felipe",
       "email": "Luisfelipe@gmail.com",
       "password": "Hola",
-      "nombre": "Felipe",
-      "id": 2,
-      "credential": "mecanico"
+      "credential": "mecanico",
+      "id": 2
     },
     {
       "email": "C@gmail.com",
@@ -27,12 +27,6 @@
       "nombre": "Pepe",
       "id": 4,
       "credential": "admin"
-    },
-    {
-      "email": "",
-      "password": "",
-      "nombre": "",
-      "id": 5
     },
     {
       "email": "Pepito@gmail.com",

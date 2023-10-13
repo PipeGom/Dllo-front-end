@@ -72,7 +72,7 @@
 width: 25%; 
 padding: 50px; 
 border-radius: 10%;
-background-color: rgba(255, 255, 255, 0.8);
+background-color: rgba(215, 204, 200, 0.8);
 }
 .formulario{
 width: 100%;
@@ -80,11 +80,11 @@ width: 100%;
 .boton{
 min-width: 40%; 
 margin-left: 20%; 
-border: 2px solid #230547;
+border: 2px solid  rgba(255, 183, 77);
 transition: background-color 0.4s;
 }
 .boton:hover{
-background-color: #230547;
+background-color:  rgba(255, 183, 77);
 color:white;
 }
 .imagen{

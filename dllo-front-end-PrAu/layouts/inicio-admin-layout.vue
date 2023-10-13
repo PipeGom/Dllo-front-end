@@ -1,16 +1,16 @@
 <template>
-    <div>   
+    <div color="rgba(255, 255, 255, 0.9)">   
         
    
-  <v-card  style="background: rgba(238, 10, 10, 0.8);
-  transition: background 0.4s; ">
+  <v-card >
     <v-layout  >
       <v-navigation-drawer
-      color="#E53935"
+        color="#D7CCC8"
         expand-on-hover
-        rail style.hover="background: rgba(0, 0, 0, 1);"
+        rail 
+        
       >
-        <v-list>
+        <v-list  >
           <v-list-item
             prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
             :title="`Bienvenido ${usuario.nombre}!`"
@@ -18,12 +18,13 @@
           ></v-list-item>
         </v-list>
 
-        <v-divider></v-divider>
+        <v-divider ></v-divider>
 
         <v-list density="compact" nav>
           <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles"></v-list-item>
           <v-list-item prepend-icon="mdi-account-multiple" title="Gestionar usuarios" to="gestion-usuarios" ></v-list-item>
           <v-list-item prepend-icon="mdi-star" title="Gestionar Inventario" ></v-list-item>
+          <v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" to="Login" ></v-list-item>
         </v-list>
       </v-navigation-drawer>
 
@@ -41,13 +42,16 @@ import { useUserStore } from '../stores/user';
 
 
 export default {
-  computed: {
+
+ 
+    computed: {
     usuario() {
       const userStore = useUserStore();
       
       return userStore.getUser;
     },
   },
+ 
   
 };
 
