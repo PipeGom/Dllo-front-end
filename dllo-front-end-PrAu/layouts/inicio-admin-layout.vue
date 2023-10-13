@@ -23,7 +23,7 @@
         <v-list density="compact" nav>
           <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles"></v-list-item>
           <v-list-item prepend-icon="mdi-account-multiple" title="Gestionar usuarios" to="gestion-usuarios" ></v-list-item>
-          <v-list-item prepend-icon="mdi-star" title="Gestionar Inventario" ></v-list-item>
+          <v-list-item prepend-icon="mdi-star" title="Gestionar Inventario" to="gestion-inventario"></v-list-item>
         </v-list>
       </v-navigation-drawer>
 
