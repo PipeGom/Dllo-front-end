@@ -42,6 +42,8 @@
   justify-content: center;
   min-height: 100vh;
   background-image: url("../src/fondo.jpg");
+  background-size: cover; /* Establece el tamaño de fondo en "cover" */
+  background-position: center; /* Opcional: centra la imagen de fondo */
   
 }
 .carta{
@@ -70,7 +72,7 @@ color:white;
 margin-left: 25%;
 margin-bottom: 20px;
 width: 50%;
-height: 40%; 
+height: 40%;
 border-radius: 50%; 
 overflow: hidden; 
 }
