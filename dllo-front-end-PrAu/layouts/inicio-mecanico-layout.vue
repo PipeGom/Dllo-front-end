@@ -10,6 +10,7 @@
         <!-- Navegacion -->
        <v-list-item  to="landing"><v-icon icon="mdi-home" /> Inicio </v-list-item> 
        <v-list-item title="Gestionar Revisiones" ></v-list-item> 
+       <v-list-item  to="seguimiento-principal"><v-icon icon="mdi-home" /> Seguimiento </v-list-item> 
        <v-list-item ></v-list-item> 
       </v-list>
     </v-navigation-drawer>
