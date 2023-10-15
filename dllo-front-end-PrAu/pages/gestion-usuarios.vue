@@ -27,6 +27,9 @@
   justify-content: center;
   min-height: 100vh;
   background-image: url("../src/fondo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
 }
 
