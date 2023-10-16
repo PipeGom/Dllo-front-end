@@ -1,4 +1,14 @@
 {
+  "autos":[
+    {
+      "modelo": "carro1",
+      "placa": "SEX123"
+    },
+    {
+      "modelo": "carro2",
+      "placa": "BFG777"
+    }
+  ],
   "user": [
     {
       "nombre": "Rodrigo",

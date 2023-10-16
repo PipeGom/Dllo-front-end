@@ -11,7 +11,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
+    "@nuxt/devtools": "^1.0.0-beta.2",
     "json-server": "^0.17.4",
     "nuxt": "^3.7.4",
     "vue": "^3.3.4",
