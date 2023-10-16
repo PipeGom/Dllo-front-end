@@ -2,18 +2,13 @@
   "autos": [
     {
       "modelo": "carro1",
-      "placa": "SEX123",
+      "placa": "SEX127",
       "id": 1
     },
     {
       "modelo": "carro2",
       "placa": "BFG777",
       "id": 2
-    },
-    {
-      "modelo": "M33",
-      "placa": "2",
-      "id": 3
     },
     {
       "modelo": "El Jhon Leyson",
