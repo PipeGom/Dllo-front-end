@@ -1,8 +1,6 @@
 <template>
     <div class="mt-3">
-
         <h3>Listado de autos</h3>
-
         <v-table>
             <thead>
                 <tr>
@@ -32,7 +30,7 @@
 </template>
 <script setup>
 import axios from "axios";
-
+             
 const autos = ref([])
 // const isEdit = ref(false) //no
 // const editingTask = ref(null) //no
@@ -46,7 +44,7 @@ const loadCars = async () => {
     const { data } = await axios.get(url)
     autos.value = data
     console.log("hola mani:", autos.value)
-}
+}              
 
 /*
 const deleteTask = async (item) => {

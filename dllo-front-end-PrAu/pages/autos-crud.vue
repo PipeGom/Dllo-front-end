@@ -1,6 +1,7 @@
 <template>
     <h1>
-        HOLA 
+        Bienvenidos al Himalaya
+        <añadir-auto></añadir-auto> 
         <autos></autos>
     </h1>
 </template>
