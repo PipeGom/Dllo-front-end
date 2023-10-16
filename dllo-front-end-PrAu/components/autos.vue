@@ -17,23 +17,24 @@
                     <td>{{ item.modelo }}</td>
                     <td>{{ item.placa }}</td>
                     <td>
-                        <!-- <v-btn icon="mdi-pencil" variant="text" @click="editTask(item)">
+                        <v-btn icon="mdi-pencil" variant="text" @click="editCar(item)">
                         </v-btn>
-                        <v-btn icon="mdi-delete-off" variant="text" @click="deleteTask(item)">
-                        </v-btn> -->
+                        
+                        <v-btn icon="mdi-delete-off" variant="text" @click="deleteCar(item)">
+                        </v-btn> 
                     </td>
                 </tr>
             </tbody>
         </v-table>
-        <tasks-edit-dialog v-if="editingTask != null" :dialog="isEdit" :task="editingTask" @update="updateTask" />
+        <editar-auto v-if="editingCars != null" :dialog="isEdit" :cars="editingCars" @update="updateTask" />
     </div>
 </template>
 <script setup>
 import axios from "axios";
              
 const autos = ref([])
-// const isEdit = ref(false) //no
-// const editingTask = ref(null) //no
+const isEdit = ref(false) //no
+const editingCars = ref(null) //no
 
 onBeforeMount(() => {
     loadCars()
@@ -46,25 +47,25 @@ const loadCars = async () => {
     console.log("hola mani:", autos.value)
 }              
 
-/*
-const deleteTask = async (item) => {
-    const url = `http://localhost:3001/tasks/${item.id}`
+
+const deleteCar = async (item) => {
+    const url = `http://localhost:3000/autos/${item.id}`
     const { data } = await axios.delete(url)
-    loadTasks()
+    loadCars()
 }
 
-const editTask = async (item) => {
+const editCar = async (item) => {
     isEdit.value = true
-    editingTask.value = { ...item }
-    console.log(editingTask.value);
+    editingCars.value = { ...item }
+    console.log(editingCars.value);
 
 }
 
 const updateTask = (isUpdated) => {
     console.log(isUpdated);
     isEdit.value=false
-    editingTask.value=null
-    loadTasks()
+    editingCars.value=null
+    loadCars()
 }
-*/
+
 </script>           
