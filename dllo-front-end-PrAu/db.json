@@ -83,5 +83,43 @@
       "id": 9,
       "credential": "admin"
     }
-  ]
+  ],
+  "auto": [
+    {
+      "marca": "Ford",
+      "modelo": "Fiesta",
+      "precio_reparacion": 0,
+      "horas_reparacion": 0,
+      "comentario": "",
+      "id": 1,
+      "partes_necesarias": [
+        {
+          "nombre": "Filtro de aceite",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Batería",
+          "cantidad": 1
+        }
+      ]
+    },
+    {
+      "marca": "Mazda",
+      "modelo": "3",
+      "precio_reparacion": 0,
+      "horas_reparacion": 0,
+      "comentario": "",
+      "id": 2,
+      "partes_necesarias": [
+        {
+          "nombre": "Filtro de aire",
+          "cantidad": 1
+        },
+        {
+          "nombre": "Neumatico",
+          "cantidad": 1
+        }
+      ]
+    }
+  ]  
 }
