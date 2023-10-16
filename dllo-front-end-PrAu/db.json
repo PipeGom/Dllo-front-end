@@ -86,64 +86,20 @@
   ],
   "auto": [
     {
-      "id": 1,
-      "marca": "Ford",
-      "modelo": "Fiesta",
-      "precio_reparacion": 0,
-      "horas_reparacion": 0,
-      "comentario": "",
-      "partes_necesarias": [
-        {
-          "nombre": "Filtro de aceite",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Batería",
-          "cantidad": 1
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "marca": "Mazda",
-      "modelo": "3",
-      "precio_reparacion": 0,
-      "horas_reparacion": 0,
-      "comentario": "",
-      "partes_necesarias": [
-        {
-          "nombre": "Filtro de aire",
-          "cantidad": 1
-        },
-        {
-          "nombre": "Neumatico",
-          "cantidad": 1
-        }
-      ]
-    },
-    {
-      "modelo": "458",
+      "modelo": "Portofino",
       "marca": "Ferrari",
-      "precio_reparacion": 20000,
-      "horas_reparacion": 10,
-      "comentario": "Cambio de Suspension",
-      "id": 3
-    },
-    {
-      "modelo": "M6",
-      "marca": "BMW",
-      "precio_reparacion": 60000,
-      "horas_reparacion": 50,
-      "comentario": "RECONSTRUCCION MOTOR",
-      "id": 4
-    },
-    {
-      "modelo": "S3",
-      "marca": "Audi",
-      "precio_reparacion": 500,
+      "precio_reparacion": 600,
       "horas_reparacion": 2,
-      "comentario": "Aceite",
-      "id": 5
+      "comentario": "Cambio de Aceite",
+      "id": 1
+    },
+    {
+      "modelo": "Raptor",
+      "marca": "Hennessey",
+      "precio_reparacion": 10000,
+      "horas_reparacion": 2,
+      "comentario": "Cambio de neumaticos",
+      "id": 2
     }
   ]
 }
