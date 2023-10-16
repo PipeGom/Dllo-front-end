@@ -1,19 +1,42 @@
 <template>
-  <h1>registro</h1>
-  <v-form @submit="validate">
-    <v-text-field v-model="brand" label="Marca" required></v-text-field>
-    <v-text-field v-model="model" label="Modelo" required></v-text-field>
-    <v-text-field v-model="price" label="Coste de la Reparacion" required @input="validatePrice"></v-text-field>
-    <v-text-field v-model="time" label="Tiempo de reparacion" required @input="validatePrice"></v-text-field>
-    <v-text-field v-model="comment" label="Comentarios" required></v-text-field>
+  <v-form @submit="validate" class="frm1">
+    <v-text-field variant="solo-inverted" v-model="brand" label="Marca" required></v-text-field>
+    <v-text-field variant="solo-inverted" v-model="model" label="Modelo" required></v-text-field>
+    <v-text-field variant="solo-inverted" v-model="price" label="Coste de la Reparacion" required @input="validatePrice"></v-text-field>
+    <v-text-field variant="solo-inverted" v-model="time" label="Tiempo de reparacion" required @input="validatePrice"></v-text-field>
+    <v-text-field variant="solo-inverted" v-model="comment" label="Comentarios" required></v-text-field>
     <!--<v-select v-model="auto.partes_necesarias">
       <option v-for="p in auto" :key="p.id" :value="p.id">
         {{ p.partes_necesarias.nombre }}
       </option>
     </v-select>-->
-    <v-btn type="submit">Guardar</v-btn>
+    <v-btn class="boton" type="submit">Guardar</v-btn>
+    <v-btn class="boton" to="/seguimiento-principal">Cancelar</v-btn>
   </v-form>
 </template>
+<style scoped>
+.frm1{
+  background-color: rgba(255, 255, 255, 0.838);
+  padding: 3%;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.boton{
+min-width: 20%;
+width: 20%; 
+margin-inline-end: 2%;
+margin-top: 1%;
+border: 2px solid #230547;
+transition: background-color 0.4s;
+}
+.boton:hover{
+background-color: #230547;
+color:white;
+}
+
+</style>
 <script>
 import axios from 'axios';
 const baseURL="http://localhost:3000/auto";
