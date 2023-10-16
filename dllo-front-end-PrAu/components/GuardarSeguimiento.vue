@@ -1,5 +1,5 @@
 <template>
-  <v-form @submit="validate" class="frm1">
+  <v-form @submit.prevent="validate" class="frm1">
     <v-text-field variant="solo-inverted" v-model="brand" label="Marca" required></v-text-field>
     <v-text-field variant="solo-inverted" v-model="model" label="Modelo" required></v-text-field>
     <v-text-field variant="solo-inverted" v-model="price" label="Coste de la Reparacion" required @input="validatePrice"></v-text-field>
@@ -10,7 +10,8 @@
         {{ p.partes_necesarias.nombre }}
       </option>
     </v-select>-->
-    <v-btn class="boton" type="submit">Guardar</v-btn>
+    <v-btn class="boton" type="submit">Guardar
+    </v-btn>
     <v-btn class="boton" to="/seguimiento-principal">Cancelar</v-btn>
   </v-form>
 </template>
@@ -81,6 +82,7 @@ export default{
       .catch(err=>{
           console.log(err);
       });
+      
     },
     validate(){
       if (!this.brand || !this.model || !this.price || !this.time || !this.comment) {
@@ -91,7 +93,9 @@ export default{
         // Si todas las validaciones pasan, continúa con el proceso de envío
         // Llama a la lógica de envío de la API aquí
         // Por ejemplo:
+        alert("El Auto ha sido registrado ");
         this.PostApi();
+        this.$router.push('/inicio-mecanico')
       }
     },
     validatePrice() {

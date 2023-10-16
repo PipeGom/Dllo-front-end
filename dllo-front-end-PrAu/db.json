@@ -120,6 +120,30 @@
           "cantidad": 1
         }
       ]
+    },
+    {
+      "modelo": "458",
+      "marca": "Ferrari",
+      "precio_reparacion": 20000,
+      "horas_reparacion": 10,
+      "comentario": "Cambio de Suspension",
+      "id": 3
+    },
+    {
+      "modelo": "M6",
+      "marca": "BMW",
+      "precio_reparacion": 60000,
+      "horas_reparacion": 50,
+      "comentario": "RECONSTRUCCION MOTOR",
+      "id": 4
+    },
+    {
+      "modelo": "S3",
+      "marca": "Audi",
+      "precio_reparacion": 500,
+      "horas_reparacion": 2,
+      "comentario": "Aceite",
+      "id": 5
     }
   ]
 }
