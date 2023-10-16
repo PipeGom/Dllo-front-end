@@ -9,7 +9,6 @@
     background-image: url(../src/creacionSeguimientoFondo.jpg);
     background-size: cover; /* Establece el tamaño de fondo en "cover" */
     background-position: center; /* Opcional: centra la imagen de fondo */
-    min-height: 100vh;
 }
 </style>
 <script>

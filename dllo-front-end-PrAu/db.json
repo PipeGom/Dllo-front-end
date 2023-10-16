@@ -95,6 +95,14 @@
       "horas_reparacion": 2,
       "comentario": "Cambio de neumaticos",
       "id": 2
+    },
+    {
+      "modelo": "Genesis",
+      "marca": "Hyundai",
+      "precio_reparacion": 50000,
+      "horas_reparacion": 10,
+      "comentario": "Cambio de Vidrio",
+      "id": 3
     }
   ]
 }
