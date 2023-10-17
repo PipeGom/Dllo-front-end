@@ -29,6 +29,7 @@
         <editar-auto v-if="editingCars != null" :dialog="isEdit" :cars="editingCars" @update="updateTask" />
     </div>
 </template>
+
 <script setup>
 import axios from "axios";
              

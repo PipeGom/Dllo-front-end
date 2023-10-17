@@ -139,6 +139,14 @@
       "horas_reparacion": 2,
       "comentario": "Aceite",
       "id": 5
+    },
+    {
+      "modelo": "2",
+      "marca": "2",
+      "precio_reparacion": 2,
+      "horas_reparacion": 2,
+      "comentario": "e",
+      "id": 6
     }
   ]
 }
