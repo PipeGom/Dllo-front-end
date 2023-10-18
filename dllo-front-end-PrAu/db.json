@@ -96,5 +96,39 @@
       "comentario": "e",
       "id": 6
     }
+  ],
+  "inventario": [
+    {
+      "nombre": "Faro delantero",
+      "Ref": "00001",
+      "precio": 130000,
+      "cantidad": 3,
+      "imagen": "Faro-delantero.jpeg",
+      "descripcion": "Los faros delanteros halógenos funcionan mediante el calentamiento de un filamento de tungsteno dentro de una lámpara. Cuando la corriente eléctrica pasa a través del filamento, se calienta y emite luz."
+    },
+    {
+      "nombre": "Frenos",
+      "Ref": "00002",
+      "precio": 328000,
+      "cantidad": 7,
+      "imagen": "Frenos.jpg",
+      "descripcion": "El freno de carro, es un mecanismo, más o menos sencillo, que fricciona las ruedas de un carro para reducir su velocidad. Normalmente no permite detener la marcha del carro, pero se utiliza como reductor de velocidad yendo cuesta abajo."
+    },
+    {
+      "nombre": "Neumatico 17",
+      "Ref": "00003",
+      "precio": 240000,
+      "cantidad": 21,
+      "imagen": "neumatico17.jpg",
+      "descripcion": "Es un neumático para ejes de dirección y tracción, destinado a vehículos de transporte de pasajeros de uso urbano y suburbano, con un elevado grado de abrasión de la banda de rodadura, debido a las especiales características de circulación."
+    },
+    {
+      "nombre": "Rin 17",
+      "Ref": "00004",
+      "precio": 486000,
+      "cantidad": 17,
+      "imagen": "Rin17.jpg",
+      "descripcion": "Llanta con diseño deportivo en V que permite una mejor adeherencia en piso mojado, no produce ruido ni vibraciones, ofrece confort al conducir."
+    }
   ]
 }
