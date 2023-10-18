@@ -1,7 +1,9 @@
 <template>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
 <v-card class="banner">Listado de Automoviles</v-card>
 <v-row class="mainCard" v-for="car in auto" :key="car.id">
-  <v-col cols="9" style="margin-right: 1%">
+  <v-col cols="12" >
     <v-card-text class="textos">Automovil: {{car.marca}} {{ car.modelo }}</v-card-text>
     <v-card-text class="textos">Precio de reparacion: {{car.precio_reparacion}}</v-card-text>
     <v-card-text class="textos">Horas en taller {{car.horas_reparacion}}</v-card-text>
@@ -16,27 +18,32 @@
       >
         <template v-slot:activator="{ props }">
           <v-col>
-          
           <v-btn
-          style="padding-block: 25%; margin-top: 3%;"
           variant="tonal"
           elevation="8"
           block rounded="lg"
           class="editButton"
-          prepend-icon="$vuetify"
           color="primary"
           v-bind="props"
-          >Actualizar Seguimiento</v-btn></v-col>
+          >
+          <span style="margin-right: 5%;"  class="material-icons">
+          published_with_changes
+          </span>
+          Actualizar Seguimiento</v-btn>
+        </v-col>
         <v-col>
           <v-btn
-          style="padding-block: 10%;"
+          style="margin-bottom: 1%;"
           elevation="8"
           variant="tonal"
           class="deleteButton"
           block rounded="lg" 
-          v-on:click="DeleteApi(car.id)" 
-          prepend-icon="$vuetify" 
-          color="error">Eliminar Auto
+          v-on:click="DeleteApi(car.id)"  
+          color="error">
+          <span style="margin-right: 5%;" class="material-icons">
+          remove_circle_outline
+          </span>
+          Eliminar Auto
         </v-btn>
       </v-col>
         </template>

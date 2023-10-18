@@ -5,11 +5,6 @@
     <v-text-field variant="solo-inverted" v-model="price" label="Coste de la Reparacion" required @input="validatePrice"></v-text-field>
     <v-text-field variant="solo-inverted" v-model="time" label="Tiempo de reparacion" required @input="validatePrice"></v-text-field>
     <v-text-field variant="solo-inverted" v-model="comment" label="Comentarios" required></v-text-field>
-    <!--<v-select v-model="auto.partes_necesarias">
-      <option v-for="p in auto" :key="p.id" :value="p.id">
-        {{ p.partes_necesarias.nombre }}
-      </option>
-    </v-select>-->
     <v-btn class="boton" type="submit">Guardar
     </v-btn>
     <v-btn class="boton" to="/seguimiento-principal">Cancelar</v-btn>

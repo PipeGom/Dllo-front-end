@@ -103,6 +103,14 @@
       "horas_reparacion": 10,
       "comentario": "Cambio de Vidrio",
       "id": 3
+    },
+    {
+      "modelo": "LaFerrari",
+      "marca": "Ferrari",
+      "precio_reparacion": 200,
+      "horas_reparacion": 20,
+      "comentario": "aceite",
+      "id": 4
     }
   ]
 }
