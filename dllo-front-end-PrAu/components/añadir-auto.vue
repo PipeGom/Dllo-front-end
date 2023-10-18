@@ -12,6 +12,8 @@
                 </v-card-item>
                 <v-card-text>
                     <form action="javascript:void(0)" @submit="saveCar">
+                        
+
 
                         <v-text-field label="Modelo" v-model="auto.modelo" required placeholder="Ingrese el modelo del vehiculo" />
                         <v-text-field label="Placa" v-model="auto.placa"  required placeholder="Ingrese la placa del vehiculo" />
