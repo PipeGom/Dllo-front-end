@@ -50,7 +50,7 @@ rel="stylesheet">
         <template v-slot:default="{ isActive }">
           <v-card>
             <v-toolbar
-              color="primary"
+              color="rgba(255, 183, 77)"
               title="Actualizando Auto"
             ></v-toolbar>
               <v-form @submit.prevent="validateUpdate(car.id,car.marca,car.modelo,car.precio_reparacion,car.horas_reparacion,car.comentario)" class="frm1">
@@ -72,44 +72,45 @@ rel="stylesheet">
 </v-row>
 </template>
 <style scoped>
-  .frm1{
-    padding: 2%;
-  }
-  .mainCard{
-    padding: 5px;
-    margin-block: 2%;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.896);
-    
-  }
-  .boton{
-  min-width: 20%;
-  width: 20%; 
-  margin-inline-start: 2%;
-  margin-top: 1%;
-  border: 2px solid #230547;
-  transition: background-color 0.4s;
-  }
-  .boton:hover{
-  background-color: #230547;
-  color:white;
-  }
-  .editButton{
-    margin-bottom: 1%;
-  }
-  .textos{
-    background-color: #e1e0e0;
-    border-radius: 12px;
-    margin-block: 1%;
-  }
-  .banner{
-    padding: 10px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.896);
-    font-size: x-large;
-    font-style: italic;
-    text-align: center;
-  }
+.frm1{
+  padding: 2%;
+}
+.mainCard{
+  padding: 5px;
+  margin-block: 2%;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.896);
+  
+}
+.boton{
+min-width: 20%;
+width: 20%; 
+margin-inline-end: 2%;
+margin-top: 1%;
+border: 2px solid rgba(255, 183, 77);
+transition: background-color 0.4s;
+background-color: rgba(215, 204, 200, 0.8);
+}
+.boton:hover{
+background-color: rgba(255, 183, 77);
+color:white;
+}
+.editButton{
+  margin-bottom: 1%;
+}
+.textos{
+  background-color: #e1e0e0;
+  border-radius: 12px;
+  margin-block: 1%;
+}
+.banner{
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.896);
+  font-size: x-large;
+  font-style: italic;
+  text-align: center;
+}
 </style>
 <script>
 import axios from 'axios';

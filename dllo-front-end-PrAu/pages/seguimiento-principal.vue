@@ -36,12 +36,12 @@
     padding-inline: 10%;
     padding-block: 20%;
     margin: 3%;
-    border: 2px solid #230547;
+    border: 2px solid rgba(255, 183, 77);
     transition: background-color 0.4s;
-    background-color: rgba(255, 255, 255, 0.953);
+    background-color: rgba(215, 204, 200, 0.8);
 }
 .boton:hover{
-    background-color: #230547;
+    background-color: rgba(255, 183, 77);
     color:white;
 }
 
