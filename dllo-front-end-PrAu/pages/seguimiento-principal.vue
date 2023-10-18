@@ -1,8 +1,19 @@
 <template>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
     <v-container grid-list-md text-xs-center align-center fluid class="back">
         <v-layout class="lay-1">
-            <v-btn prepend-icon="$vuetify" stacked variant="tonal"  class="boton" to="crear-seguimiento" >Crear Seguimiento</v-btn>
-            <v-btn prepend-icon="$vuetify" stacked variant="tonal"  class="boton" to="actualizar-seguimiento" >Actualizar Seguimiento</v-btn>
+            <v-btn style="font-size: 20px;" stacked variant="tonal"  class="boton" to="crear-seguimiento" >
+                <span style="font-size: 50px; padding-bottom: 10%;" class="material-icons">
+                add_circle_outline
+                </span>
+                Crear Seguimiento
+            </v-btn>
+            <v-btn style="font-size: 20px;" stacked variant="tonal"  class="boton" to="actualizar-seguimiento">
+                <span style="font-size: 50px; padding-bottom: 10%;" class="material-icons">
+                manage_history
+                </span>
+                Actualizar Seguimiento</v-btn>
         </v-layout>
     </v-container>
 </template>
@@ -25,12 +36,12 @@
     padding-inline: 10%;
     padding-block: 20%;
     margin: 3%;
-    border: 2px solid #230547;
+    border: 2px solid rgba(255, 183, 77);
     transition: background-color 0.4s;
-    background-color: rgba(255, 255, 255, 0.953);
+    background-color: rgba(215, 204, 200, 0.8);
 }
 .boton:hover{
-    background-color: #230547;
+    background-color: rgba(255, 183, 77);
     color:white;
 }
 
@@ -38,7 +49,6 @@
     background-image: url("../src/trackingBack.jpg");
     background-size: cover; /* Establece el tamaño de fondo en "cover" */
     background-position: center; /* Opcional: centra la imagen de fondo */
-  
 }
 
 </style>
