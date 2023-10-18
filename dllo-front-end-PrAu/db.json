@@ -16,9 +16,9 @@
       "id": 4
     },
     {
-      "modelo": "Berraquito24",
-      "placa": "BRQ234",
-      "id": 5
+      "modelo": "ElNarizon",
+      "placa": "POV891",
+      "id": 6
     }
   ],
   "user": [
@@ -85,7 +85,6 @@
       "marca": "Ferrari",
       "precio_reparacion": 600,
       "horas_reparacion": 2,
-<<<<<<< HEAD
       "comentario": "Aceite",
       "id": 5
     },
@@ -96,26 +95,6 @@
       "horas_reparacion": 2,
       "comentario": "e",
       "id": 6
-=======
-      "comentario": "Cambio de Aceite",
-      "id": 1
-    },
-    {
-      "modelo": "Raptor",
-      "marca": "Hennessey",
-      "precio_reparacion": 10000,
-      "horas_reparacion": 2,
-      "comentario": "Cambio de neumaticos",
-      "id": 2
-    },
-    {
-      "modelo": "Genesis",
-      "marca": "Hyundai",
-      "precio_reparacion": 50000,
-      "horas_reparacion": 10,
-      "comentario": "Cambio de Vidrio",
-      "id": 3
->>>>>>> 878c5332648eabb6f835cc48832deeca3ef2cbd6
     }
   ]
 }
