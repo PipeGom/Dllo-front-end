@@ -49,10 +49,6 @@
     background-image: url("../src/trackingBack.jpg");
     background-size: cover; /* Establece el tamaño de fondo en "cover" */
     background-position: center; /* Opcional: centra la imagen de fondo */
-  
-}
-.icon{
-    
 }
 
 </style>
