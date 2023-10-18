@@ -27,6 +27,7 @@
             </tbody>
         </v-table>
         <editar-auto v-if="editingCars != null" :dialog="isEdit" :cars="editingCars" @update="updateTask" />
+        
     </div>
 </template>
 <script setup>
