@@ -8,8 +8,7 @@ import { Style } from '#build/components';
         height="4"
         indeterminate
       ></v-progress-linear>
-    </template>
-
+    </template>    
     <v-img cover height="250" src="../src/Faro-delantero.jpeg"></v-img>
 
     <v-card-item>
@@ -61,6 +60,22 @@ import { Style } from '#build/components';
     </v-card-actions>
   </v-card>
 </template>
+
+<script>
+import axios from "axios";
+const articulos = ref([])
+
+onBeforeMount(() => {
+    CargarArticulos()
+})
+
+const CargarArticulos = async () => {
+    const url = "http://localhost:3000/inventario"
+    const { data } = await axios.get(url)
+    articulos.value = data
+    console.log("articulos:", articulos.value)
+}  
+</script>
 
 <style>
 #Titulo {
