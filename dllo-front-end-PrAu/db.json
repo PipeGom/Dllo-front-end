@@ -16,9 +16,9 @@
       "id": 4
     },
     {
-      "modelo": "Berraquito24",
-      "placa": "BRQ234",
-      "id": 5
+      "modelo": "ElNarizon",
+      "placa": "POV891",
+      "id": 6
     }
   ],
   "user": [
@@ -101,6 +101,11 @@
       "precio_reparacion": 2,
       "horas_reparacion": 2,
       "comentario": "e",
+      "modelo": "RT12R",
+      "marca": "RUF",
+      "precio_reparacion": 10000,
+      "horas_reparacion": 30,
+      "comentario": "Rectificacion",
       "id": 6
     }
   ],
