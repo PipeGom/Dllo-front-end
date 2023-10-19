@@ -8,7 +8,7 @@
             placeholder="Ingrese la placa o el nombre del cliente"
             @input="filtrarAutos"
         ></v-text-field>
-        <v-table>
+        <v-table class= "v-data-table thead th">
             <thead>
                 <tr>
                     <th>
@@ -39,13 +39,13 @@
                     <td>
                         <v-btn icon="mdi-pencil" variant="text" @click="editCar(item)">
                         </v-btn>
-                        <v-btn icon="mdi-delete-off" variant="text" @click="deleteCar(item)">
+                        <v-btn icon="mdi-delete-off" variant="text" @click="deleteCarx(item)">
                         </v-btn> 
                     </td>
                 </tr>
             </tbody>
         </v-table>
-        <editar-auto v-if="editingCars != null" :dialog="isEdit" :cars="editingCars" @update="updateTask" />
+        <editar-auto v-if="editingCars != null" :dialog="isEdit" :cars="editingCars" @update="updateCars" />
         
     </div>
 </template>
@@ -60,6 +60,7 @@
 <script setup>
 import axios from "axios";
 import { ref, onBeforeMount } from "vue";
+import Swal from 'sweetalert2'
 
 const autos = ref([]);
 const autosFiltrados = ref([]);
@@ -78,18 +79,14 @@ const loadCars = async () => {
     filtrarAutos();
 };
 
-const deleteCar = async (item) => {
-    const url = `http://localhost:3000/autos/${item.id}`;
-    const { data } = await axios.delete(url);
-    loadCars();
-};
+
 
 const editCar = async (item) => {
     isEdit.value = true;
     editingCars.value = { ...item };
 };
 
-const updateTask = (isUpdated) => {
+const updateCars = (isUpdated) => {
     isEdit.value = false;
     editingCars.value = null;
     loadCars();
@@ -103,6 +100,49 @@ const filtrarAutos = () => {
     );
 };
 
+const deleteCarx = async (item) => {
+try {
+
+const result = await Swal.fire({
+      title: 'Alerta de eliminación',
+      text: '¿Esta seguro de eliminar este vehículo?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#d33'
+    });
+
+if (result.isConfirmed){
+
+    const url = `http://localhost:3000/autos/${item.id}`;
+    const { data } = await axios.delete(url);
+    loadCars()
+Swal.fire({
+      title: 'Eliminación exitosa',
+      text: 'El Vehículo fue eliminado correctamente.',
+      icon: 'success',
+    });
+
+}else{
+
+Swal.fire({
+      title: 'Eliminación cancelada',
+      text: 'El vehículo no fue eliminado',
+      icon: 'error',
+    });
+}
+
+}catch (error) {
+Swal.fire({
+  title: 'Error',
+  text: 'No se puede eliminar el vehículo seleccionado',
+  icon: 'error',
+});
+}
+
+}
 
 
 
@@ -117,3 +157,12 @@ const filtrarAutos = () => {
 
 </script>
 
+<style>
+.v-data-table thead th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: bold;
+  font-family: 'Arial, sans-serif'; /* Cambia el tipo de fuente */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+}
+</style>

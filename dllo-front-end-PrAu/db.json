@@ -6,7 +6,7 @@
       "numero": "3046906969",
       "correo": "yuya@gmail.com",
       "direccion": "Calle 24D #81 19",
-      "modelo": "BotsVaguen edicion coleccionista ",
+      "modelo": "BotsVaguen edicion coleccionista",
       "marca": "BotsVaguen",
       "placa": "BOT902",
       "id": 1
@@ -139,24 +139,69 @@
       "nombre": "Jhon",
       "id": 12,
       "credential": "admin"
+    },
+    {
+      "email": "Pruebita3@gmail.com",
+      "password": "Buenas",
+      "nombre": "Pruebiita",
+      "id": 13,
+      "credential": "mecanico"
+    },
+    {
+      "email": "Pruebitaaa3@gmail.com",
+      "password": "Buenas",
+      "nombre": "Pruebiitaa",
+      "id": 14,
+      "credential": "mecanico"
+    },
+    {
+      "email": "Carro2@gmail.com",
+      "password": "Carrito",
+      "nombre": "Holi",
+      "id": 15,
+      "credential": "mecanico"
+<<<<<<< HEAD
+    },
+    {
+      "email": "Holi@gmail.com",
+      "password": "Hola2",
+      "nombre": "Holi",
+      "id": 16,
+      "credential": "mecanico"
+=======
+>>>>>>> a2920f1b5faca60dc78b2b99a923994f04c8000f
     }
   ],
-  "auto": [
+  "seguimiento": [
     {
-      "modelo": "Portofino",
-      "marca": "Ferrari",
       "precio_reparacion": 600,
       "horas_reparacion": 2,
-      "comentario": "Aceite",
+      "id_auto": 0,
       "id": 5
     },
     {
-      "modelo": "RT12R",
-      "marca": "RUF",
       "precio_reparacion": 10000,
       "horas_reparacion": 30,
-      "comentario": "Rectificacion",
+      "id_auto": 0,
       "id": 6
+    },
+    {
+      "precio_reparacion": 500,
+      "horas_reparacion": 20,
+      "id_auto": 0,
+      "id": 7
+    },
+    {
+      "precio_reparacion": 300,
+      "horas_reparacion": 1,
+      "id_auto": null,
+      "id": 8
+    },
+    {
+      "precio_reparacion": 200,
+      "horas_reparacion": 2,
+      "id_auto": 3,
+      "id": 9
     }
   ],
   "inventario": [
