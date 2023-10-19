@@ -132,6 +132,13 @@
       "nombre": "okk",
       "id": 11,
       "credential": ""
+    },
+    {
+      "email": "Jhon@gmail.com",
+      "password": "123",
+      "nombre": "Jhon",
+      "id": 12,
+      "credential": "admin"
     }
   ],
   "auto": [
@@ -166,7 +173,7 @@
       "precio": 328000,
       "cantidad": 7,
       "imagen": "Frenos.jpg",
-      "descripcion": "el freno de carro, es un mecanismo, más o menos sencillo, que fricciona las ruedas de un carro para reducir su velocidad. Normalmente no permite detener la marcha del carro",
+      "descripcion": "El freno de carro, es un mecanismo, más o menos sencillo, que fricciona las ruedas de un carro para reducir su velocidad. Normalmente no permite detener la marcha del carro",
       "id": "00002"
     },
     {
@@ -200,22 +207,6 @@
       "cantidad": 12,
       "imagen": "amortiguador.jpg",
       "descripcion": "Estos controlan el movimiento excesivo de la carrocería y las llantas, reducen el rebote, la inclinación y el balanceo del vehículo, así como la inclinación al frenar y el descenso al acelerar."
-    },
-    {
-      "nombre": "piston",
-      "precio": "124343",
-      "cantidad": "23",
-      "descripcion": "ewewdsds",
-      "imagen": "default.jpg",
-      "id": "iHMrz6m"
-    },
-    {
-      "nombre": "mofle",
-      "precio": "2355",
-      "cantidad": "14",
-      "descripcion": "descripción",
-      "imagen": "default.jpg",
-      "id": "Kv-HzIJ"
     }
   ]
 }

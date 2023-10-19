@@ -21,7 +21,7 @@
       
               <v-list density="compact" nav>
                 <v-list-item prepend-icon="mdi-star" title="Seguimiento" to="seguimiento-principal" ></v-list-item>
-                <v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" to="Login" ></v-list-item>
+                <v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" to="index" ></v-list-item>
               </v-list>
             </v-navigation-drawer>
       
