@@ -8,7 +8,7 @@
             placeholder="Ingrese la placa o el nombre del cliente"
             @input="filtrarAutos"
         ></v-text-field>
-        <v-table>
+        <v-table class= "v-data-table thead th">
             <thead>
                 <tr>
                     <th>
@@ -157,3 +157,12 @@ Swal.fire({
 
 </script>
 
+<style>
+.v-data-table thead th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: bold;
+  font-family: 'Arial, sans-serif'; /* Cambia el tipo de fuente */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+}
+</style>
