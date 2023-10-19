@@ -10,6 +10,9 @@
         <v-table>
             <thead>
                 <tr>
+                    <th>
+                        
+                    </th>
                     <th class="text-left">
                         Modelo
                     </th>
@@ -20,12 +23,16 @@
             </thead>
             <tbody>
                 <tr v-for="item in autosFiltrados" :key="item.placa">
+                    <td>
+                        <!--<img-expandible></img-expandible>-->
+                    
+                    </td>
                     <td>{{ item.modelo }}</td>
                     <td>{{ item.placa }}</td>
+                    
                     <td>
                         <v-btn icon="mdi-pencil" variant="text" @click="editCar(item)">
                         </v-btn>
-                        
                         <v-btn icon="mdi-delete-off" variant="text" @click="deleteCar(item)">
                         </v-btn> 
                     </td>
@@ -36,6 +43,13 @@
         
     </div>
 </template>
+
+<style>
+    .imagen-limitada {
+        max-width: 300px;
+        max-height: 200px;
+}
+</style>
 
 <script setup>
 import axios from "axios";
@@ -76,7 +90,7 @@ const updateTask = (isUpdated) => {
 };
 
 const filtrarAutos = () => {
-    print("este es el search", search.value)
+    // print("este es el search", search.value)
     autosFiltrados.value = autos.value.filter(auto =>
         auto.modelo.toLowerCase().includes(search.value.toLowerCase()) ||
         auto.placa.toLowerCase().includes(search.value.toLowerCase())
