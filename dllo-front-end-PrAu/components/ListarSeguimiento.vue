@@ -1,15 +1,28 @@
 <template>
+    <div class="container">
+    <v-card class="carta">
+
+      <v-form  ref="form1" fast-fail @submit.prevent @submit="buscarUsuario" >
+        <v-text-field
+        v-model="nameBuscar"
+
+        
+        label="Nombre"
+        required
+        
+        
+      ></v-text-field>
+      <v-card-text class="textos">Automovil: {{car.marca}} {{ car.modelo }}</v-card-text>
+      <v-card-text class="textos">Comentario: {{car.comentario}}</v-card-text>
+
+      <v-btn type="submit" class="boton rounded-pill" >Actualizar</v-btn>
+      </v-form>
+      </v-card>
+      </div>
+
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 rel="stylesheet">
-<v-card class="banner">Listado de Automoviles</v-card>
-<v-row class="mainCard" v-for="car in auto" :key="car.id">
-  <v-col cols="12" >
-    <v-card-text class="textos">Automovil: {{car.marca}} {{ car.modelo }}</v-card-text>
-    <v-card-text class="textos">Precio de reparacion: {{car.precio_reparacion}}</v-card-text>
-    <v-card-text class="textos">Horas en taller {{car.horas_reparacion}}</v-card-text>
-    <v-card-text class="textos">Precio de reparacion: {{car.precio_reparacion}}</v-card-text>
-    <v-card-text class="textos">Comentario: {{car.comentario}}</v-card-text>
-  </v-col>
 <v-row justify="center">
     <v-col>
       <v-dialog
@@ -19,7 +32,6 @@ rel="stylesheet">
         <template v-slot:activator="{ props }">
           <v-col>
           <v-btn
-          variant="tonal"
           elevation="8"
           block rounded="lg"
           class="editButton"
@@ -29,22 +41,11 @@ rel="stylesheet">
           <span style="margin-right: 5%;"  class="material-icons">
           published_with_changes
           </span>
-          Actualizar Seguimiento</v-btn>
+          Agregar Seguimiento</v-btn>
         </v-col>
         <v-col>
-          <v-btn
-          style="margin-bottom: 1%;"
-          elevation="8"
-          variant="tonal"
-          class="deleteButton"
-          block rounded="lg" 
-          v-on:click="DeleteApi(car.id)"  
-          color="error">
-          <span style="margin-right: 5%;" class="material-icons">
-          remove_circle_outline
-          </span>
-          Eliminar Auto
-        </v-btn>
+      </v-col>
+      <v-col>
       </v-col>
         </template>
         <template v-slot:default="{ isActive }">
@@ -53,14 +54,13 @@ rel="stylesheet">
               color="rgba(255, 183, 77)"
               title="Actualizando Auto"
             ></v-toolbar>
-              <v-form @submit.prevent="validateUpdate(car.id,car.marca,car.modelo,car.precio_reparacion,car.horas_reparacion,car.comentario)" class="frm1">
-                <v-text-field variant="solo-inverted" v-model="car.marca" label="" required></v-text-field>
-                <v-text-field variant="solo-inverted" v-model="car.modelo" label="" required></v-text-field>
-                <v-text-field variant="solo-inverted" v-model="car.precio_reparacion" label="" required @input="validatePrice"></v-text-field>
-                <v-text-field variant="solo-inverted" v-model="car.horas_reparacion" label="" required @input="validatePrice"></v-text-field>
-                <v-text-field variant="solo-inverted" v-model="car.comentario" label="" required></v-text-field>
+              <v-form @submit.prevent="PostApi" class="frm1">
+                <v-text-field variant="solo-inverted" v-model="id_auto" label="ID del auto" required>{{ car.id }}</v-text-field>
+                <v-text-field variant="solo-inverted" v-model="price" label="Coste de la reparacion" required></v-text-field>
+                <v-text-field variant="solo-inverted" v-model="time" label="Tiempo estimado" required></v-text-field>
             <v-card-actions class="justify-end">
-              <v-btn class="boton" type="submit">Guardar</v-btn>
+              <v-btn 
+               class="boton" type="submit">Guardar</v-btn>
               <v-btn class="boton" variant="text" @click="isActive.value = false">Cancelar</v-btn>
             </v-card-actions>
           </v-form>
@@ -69,7 +69,7 @@ rel="stylesheet">
       </v-dialog>
     </v-col>
   </v-row>
-</v-row>
+
 </template>
 <style scoped>
 .frm1{
@@ -111,111 +111,183 @@ color:white;
   font-style: italic;
   text-align: center;
 }
+
+.carta{
+  padding: 2%;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.734);
+}
 </style>
 <script>
+import Swal from 'sweetalert2'
 import axios from 'axios';
-const baseURL="http://localhost:3000/auto";
+const baseURL="http://localhost:3000/seguimiento";
+import articulo_inventario from './articulo_inventario.vue';
   
-  export default{
-    name:"App",
-    data(){
-      return{
-        auto:[],
-        id:0,
-        model:"",
-        brand:"",
-        price:null,
-        time:null,
-        comment:""
+/*onBeforeMount(() => {
+    loadCars();
+});
+
+const loadCars = async () => {
+    const url = "http://localhost:3000/autos";
+    const { data } = await axios.get(url);
+    autos.value = data;
+    filtrarAutos();
+};*/
+
+export default{
+  name:"App",
+  data(){
+    return{
+      dialog: false,
+      seguimiento:[],
+      car:[],
+      id:0,
+      
+      price:null,
+      time:null,
+    }
+  },
+  mounted() {
+    this.GetApi();
+  },
+  methods:{
+      async GetApi(){
+      await axios
+      .get(baseURL)
+      .then((resp)=>{
+          this.seguimiento = resp.data})
+      .catch((err)=>{
+          console.log(err);
+      });
+      },
+      async PostApi(){
+      await axios
+      .post(baseURL,{
+        precio_reparacion:parseInt(this.price),
+        horas_reparacion:parseInt(this.time),
+        id_auto: parseInt(this.car.id)
+      })
+      .then(resp=>{
+          console.log(resp);
+          this.GetApi();
+      })
+      .catch(err=>{
+          console.log(err);
+      });
+    },
+    async DeleteApi(id){
+      await axios
+      .delete(baseURL+'/'+id)
+      .then((resp)=>{
+          console.log(resp);
+          this.GetApi();
+      })
+      .catch(err=>{
+          console.log(err);
+      });
+    },
+    async UpdateApi(id,marca,modelo,precio_reparacion, horas_reparacion, comentario){
+      await axios
+      .put(baseURL+'/'+id,{
+        precio_reparacion:precio_reparacion,
+        horas_reparacion:horas_reparacion
+      })
+      .then((resp)=>{
+          console.log(resp);
+          this.GetApi();
+      })
+      .catch(err=>{
+          console.log(err);
+      });
+    },
+    validate(){
+      if (!this.brand || !this.model || !this.price || !this.time || !this.comment) {
+        // Muestra un mensaje de error o toma la acción adecuada cuando falten campos obligatorios
+        // Por ejemplo:
+        alert("Por favor, complete todos los campos obligatorios.");
+      } else {
+        // Si todas las validaciones pasan, continúa con el proceso de envío
+        // Llama a la lógica de envío de la API aquí
+        // Por ejemplo:
+        this.PostApi();
       }
     },
-    mounted() {
-      this.GetApi();
+    validateUpdate(id,marca,modelo,precio_reparacion, horas_reparacion, comentario){
+      if (!marca || !modelo || !precio_reparacion || !horas_reparacion || !comentario) {
+        // Muestra un mensaje de error o toma la acción adecuada cuando falten campos obligatorios
+        // Por ejemplo:
+        console.log(marca)
+        alert("Por favor, complete todos los campos obligatorios.");
+      } else {
+        // Si todas las validaciones pasan, continúa con el proceso de envío
+        // Llama a la lógica de envío de la API aquí
+        // Por ejemplo:
+        this.UpdateApi(id,marca,modelo,precio_reparacion, horas_reparacion, comentario);
+        alert("Se realizaron los cambios con exito");
+      }
     },
-    methods:{
-        async GetApi(){
-        await axios
-        .get(baseURL)
-        .then((resp)=>{
-            this.auto = resp.data})
-        .catch((err)=>{
-            console.log(err);
-        });
-        },
-        async PostApi(){
-        await axios
-        .post(baseURL,{
-          modelo:this.model,
-          marca:this.brand,
-          precio_reparacion:parseInt(this.price),
-          horas_reparacion:parseInt(this.time),
-          comentario:this.comment})
-        .then(resp=>{
-            console.log(resp);
-            this.GetApi();
-        })
-        .catch(err=>{
-            console.log(err);
-        });
-      },
-      async DeleteApi(id){
-        await axios
-        .delete(baseURL+'/'+id)
-        .then((resp)=>{
-            console.log(resp);
-            this.GetApi();
-        })
-        .catch(err=>{
-            console.log(err);
-        });
-      },
-      async UpdateApi(id,marca,modelo,precio_reparacion, horas_reparacion, comentario){
-        await axios
-        .put(baseURL+'/'+id,{
-          modelo:modelo,
-          marca:marca,
-          precio_reparacion:precio_reparacion,
-          horas_reparacion:horas_reparacion,
-          comentario:comentario})
-        .then((resp)=>{
-            console.log(resp);
-            this.GetApi();
-        })
-        .catch(err=>{
-            console.log(err);
-        });
-      },
-      validate(){
-        if (!this.brand || !this.model || !this.price || !this.time || !this.comment) {
-          // Muestra un mensaje de error o toma la acción adecuada cuando falten campos obligatorios
-          // Por ejemplo:
-          alert("Por favor, complete todos los campos obligatorios.");
-        } else {
-          // Si todas las validaciones pasan, continúa con el proceso de envío
-          // Llama a la lógica de envío de la API aquí
-          // Por ejemplo:
-          this.PostApi();
-        }
-      },
-      validateUpdate(id,marca,modelo,precio_reparacion, horas_reparacion, comentario){
-        if (!marca || !modelo || !precio_reparacion || !horas_reparacion || !comentario) {
-          // Muestra un mensaje de error o toma la acción adecuada cuando falten campos obligatorios
-          // Por ejemplo:
-          console.log(marca)
-          alert("Por favor, complete todos los campos obligatorios.");
-        } else {
-          // Si todas las validaciones pasan, continúa con el proceso de envío
-          // Llama a la lógica de envío de la API aquí
-          // Por ejemplo:
-          this.UpdateApi(id,marca,modelo,precio_reparacion, horas_reparacion, comentario);
-          alert("Se realizaron los cambios con exito");
-        }
-      },
-      validatePrice() {
-      // Usamos una expresión regular para permitir solo números enteros o decimales con un punto
-      this.price = this.price.replace(/[^0-9.]/g, '');
-      this.time = this.time.replace(/[^0-9.]/g, '');
-    }
-    }
+    validatePrice() {
+    // Usamos una expresión regular para permitir solo números enteros o decimales con un punto
+    this.price = this.price.replace(/[^0-9.]/g, '');
+    this.time = this.time.replace(/[^0-9.]/g, '');
+  },
+  async buscarUsuario(){
+    const validacion1 = await this.validateBuscar()
+console.log(validacion1)
+
+      if(validacion1){
+            try{
+            const responseBuscar = await axios.get('http://localhost:3000/autos');
+            const autoJSON = responseBuscar.data.find(autos => autos.placa === this.nameBuscar);
+
+            
+            
+              this.car = autoJSON
+              this.id = parseInt(autoJSON.id)
+              this.brand = autoJSON.marca
+              this.model = autoJSON.modelo 
+              this.comment = autoJSON.comentario
+              console.log(this.car)
+            if (autoJSON) {  
+              Swal.fire({
+                icon: 'success',
+                title: 'Auto encontrado',
+                text: '',
+                footer: ''
+              });
+            } else{
+              
+              Swal.fire({
+                icon: 'error',
+                title: 'El Auto no existe',
+                text: '',
+                footer: ''
+              });
+            } } catch(error){
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'El usuario no existe',
+                    text: '',
+                    footer: ''
+                  });
+              console.error('Error al autenticar:', error);
+            }  
+          }else{
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Es necesario ingresar el nombre del usuario',
+                    text: '',
+                    footer: ''
+                  });
+          } 
+
+},
+async validateBuscar () {
+    const { valid } = await this.$refs.form1.validate()
+    console.log('Validation result for nameBuscar:', valid);
+    return valid;
+  },
   }
+}
   </script>
