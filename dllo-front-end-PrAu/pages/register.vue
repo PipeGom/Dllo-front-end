@@ -111,8 +111,8 @@ data() {
   return {
     name: '',
     nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        v => !!v || 'El nombre es requerido.',
+        v => (v && v.length <= 10) || 'El nombre debe tener menos de 20 caracteres.',
       ],
     email: '',
     password: '',
