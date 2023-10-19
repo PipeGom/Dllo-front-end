@@ -141,8 +141,6 @@
       "nombre": "okk",
       "id": 11,
       "credential": ""
-<<<<<<< HEAD
-=======
     },
     {
       "email": "Jhon@gmail.com",
@@ -171,7 +169,6 @@
       "nombre": "Holi",
       "id": 15,
       "credential": "mecanico"
->>>>>>> 7df4a1446c1968f0af47627ba5fbdaa781b11a5c
     }
   ],
   "seguimiento": [
