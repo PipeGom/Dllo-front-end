@@ -1,6 +1,5 @@
 <template>
     <h1>
-        Bienvenidos al Himalaya
         <añadir-auto></añadir-auto> 
         
         <autos></autos>
@@ -8,5 +7,7 @@
 </template>
 
 <script>
-
+definePageMeta({
+layout: "inicio-admin-layout",
+});
 </script>
