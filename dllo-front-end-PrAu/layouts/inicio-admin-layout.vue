@@ -12,7 +12,7 @@
       >
         <v-list  >
           <v-list-item
-            prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
+            prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
             :title="`Bienvenido ${usuario.nombre}!`"
             :subtitle="`${usuario.email}`"
           ></v-list-item>
@@ -21,7 +21,7 @@
         <v-divider ></v-divider>
 
         <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles"></v-list-item>
+          
           <v-list-item prepend-icon="mdi-account-multiple" title="Gestionar usuarios" to="gestion-usuarios" ></v-list-item>
           <v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" to="Login" ></v-list-item>
           <v-list-item prepend-icon="mdi-star" title="Gestionar Autos" to="autos-crud" ></v-list-item>
