@@ -1,9 +1,10 @@
 <template>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    <ActualizarSeguimiento/>
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
     <v-container grid-list-md text-xs-center align-center fluid class="back">
         <v-layout class="lay-1">
-            <v-btn style="font-size: 20px;" stacked variant="tonal"  class="boton" to="crear-seguimiento" >
+            <v-btn disabled style="font-size: 20px;" stacked variant="tonal"  class="boton" to="crear-seguimiento" >
                 <span style="font-size: 50px; padding-bottom: 10%;" class="material-icons">
                 add_circle_outline
                 </span>
@@ -15,7 +16,7 @@
                 </span>
                 Actualizar Seguimiento</v-btn>
         </v-layout>
-    </v-container>
+    </v-container>-->
 </template>
 <style scoped>
 .lay-1{
@@ -53,6 +54,13 @@
 
 </style>
 <script>
+import ActualizarSeguimiento from './actualizar-seguimiento.vue';
+
+export default{
+    components:{
+        ActualizarSeguimiento
+    }
+}
 
 definePageMeta({
 layout: "inicio-mecanico-layout",

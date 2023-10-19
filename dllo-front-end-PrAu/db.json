@@ -160,16 +160,6 @@
       "nombre": "Holi",
       "id": 15,
       "credential": "mecanico"
-<<<<<<< HEAD
-    },
-    {
-      "email": "Holi@gmail.com",
-      "password": "Hola2",
-      "nombre": "Holi",
-      "id": 16,
-      "credential": "mecanico"
-=======
->>>>>>> a2920f1b5faca60dc78b2b99a923994f04c8000f
     }
   ],
   "seguimiento": [
