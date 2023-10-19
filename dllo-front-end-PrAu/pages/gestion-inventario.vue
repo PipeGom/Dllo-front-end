@@ -1,7 +1,9 @@
 <template>
     <div>
       <h1 class="Title" style="text-align: center">Gestión de Inventario</h1>
-      <v-btn class="boton rounded-pill"  @click="CrearArticulo">Crear articulo</v-btn>
+      <v-container class="d-flex justify-center align-center">
+        <v-btn class="boton rounded-pill" @click="CrearArticulo">Crear artículo</v-btn>
+      </v-container>
       <div>
         <v-row>
           <v-col
@@ -137,7 +139,7 @@
     precio: 0,
     cantidad: 0,
     descripcion: 'gh',
-   // imagen: "default.jpg",
+    imagen: "default.jpg",
     id: 'gdfer'
     });
 
@@ -378,7 +380,8 @@
       cerrarModal2,
       EliminarArticulo,
       validationErrors,
-      validationRules
+      validationRules,
+      watch
     }
 }}
 </script>
