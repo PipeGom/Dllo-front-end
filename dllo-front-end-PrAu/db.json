@@ -171,22 +171,36 @@
       "credential": "mecanico"
     }
   ],
-  "auto": [
+  "seguimiento": [
     {
-      "modelo": "Portofino",
-      "marca": "Ferrari",
       "precio_reparacion": 600,
       "horas_reparacion": 2,
-      "comentario": "Aceite",
+      "id_auto": 0,
       "id": 5
     },
     {
-      "modelo": "RT12R",
-      "marca": "RUF",
       "precio_reparacion": 10000,
       "horas_reparacion": 30,
-      "comentario": "Rectificacion",
+      "id_auto": 0,
       "id": 6
+    },
+    {
+      "precio_reparacion": 500,
+      "horas_reparacion": 20,
+      "id_auto": 0,
+      "id": 7
+    },
+    {
+      "precio_reparacion": 300,
+      "horas_reparacion": 1,
+      "id_auto": null,
+      "id": 8
+    },
+    {
+      "precio_reparacion": 200,
+      "horas_reparacion": 2,
+      "id_auto": 3,
+      "id": 9
     }
   ],
   "inventario": [
