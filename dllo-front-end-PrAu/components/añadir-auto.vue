@@ -1,12 +1,11 @@
 <template>
-  <div class="sw12-container">
     <v-container class="d-flex justify-center align-center">
       <v-btn class="boton rounded-pill" @click="dialog = true" style="">
       Añadir un vehiculo
     </v-btn>
     </v-container>
     
-    <div class="sw12-container">
+    <div>
       <v-dialog v-model="dialog" width="80%" persistent append-to-body>
         <v-card class="sw12-containerx">
           <v-card-item>
@@ -56,7 +55,7 @@
         </v-card>
       </v-dialog>
     </div>
-  </div>
+
 </template>
 
 <script setup>
@@ -200,6 +199,7 @@ const cargarDatos = async () => {
   /* Estilos para el título de sección */
   font-size: 20px;
   margin-bottom: 10px;
+  background-color: #f0f0f0;
 }
 
 /* Agrega estilos personalizados para otros elementos según tus preferencias */
