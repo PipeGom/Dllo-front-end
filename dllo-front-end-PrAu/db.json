@@ -1,24 +1,9 @@
 {
   "autos": [
     {
-      "modelo": "carro1",
-      "placa": "SEX127",
-      "id": 1
-    },
-    {
-      "modelo": "carro2",
-      "placa": "BFG777",
-      "id": 2
-    },
-    {
-      "modelo": "El Jhon Leyson",
-      "placa": "233E4",
-      "id": 4
-    },
-    {
-      "modelo": "ElNarizon",
-      "placa": "POV891",
-      "id": 6
+      "modelo": "CARRENEITOR",
+      "placa": "JHK232",
+      "id": 12
     }
   ],
   "user": [

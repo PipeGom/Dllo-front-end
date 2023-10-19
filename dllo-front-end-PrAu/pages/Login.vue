@@ -5,7 +5,7 @@
     <div class="container">
     <v-card class="carta">
       <img src="../src/logo.jpg" class="imagen"/>
-    <v-form class="formulario"  fast-fail @submit.prevent @submit="login" >
+    <v-form class="formulario" ref="form" fast-fail @submit.prevent @submit="login" >
     
     <v-text-field 
       type="email"
@@ -115,60 +115,79 @@ data() {
   };
 },
 methods: {
+  async validate () {
+        const { valid } = await this.$refs.form.validate()
+        
+        return valid;
+      },
 
 async login() {
-  try {
-  
-    const response = await axios.get('http://localhost:3000/user'); 
 
-    const usuario = response.data.find(user => user.email === this.email && user.password === this.password);
+  const validacion1 = await this.validate()
 
-     /*Se usa pinia para almacenar el estado global del usuario*/
-     /*Guardamos el usuario autenticado*/
+  if(validacion1){
 
-    
-    const userStore = useUserStore();  
-    
-    //console.log(userStore.getUser)
+            try {
+            
+              const response = await axios.get('http://localhost:3000/user'); 
 
-    //console.log(userStore)
+              const usuario = response.data.find(user => user.email === this.email && user.password === this.password);
 
-    console.log(usuario.credential);
-    switch (true) {
+              /*Se usa pinia para almacenar el estado global del usuario*/
+              /*Guardamos el usuario autenticado*/
 
-          
-          case usuario.credential === "mecanico":
-            userStore.setUser(usuario);     // Debe setearse aca de lo contrario siempre carga por defecto el mismo
-            console.log('entre al mecanico')
-            this.$router.push('./inicio-mecanico');
-            break;
+              
+              const userStore = useUserStore();  
+              
+              //console.log(userStore.getUser)
 
-          case usuario.credential === "admin": 
-            userStore.setUser(usuario);  // Se debe volver hacer aqui
-            console.log('entre al Admin')
-            this.$router.push('./inicio-admin');
-            break;
-        }
-  } catch (error) {
-    if (error.response && error.response.status === 404) { 
-      console.log('Entre')
-        Swal.fire({
-        icon: 'error',
-        title: 'Credenciales incorrectas',
-        text: 'Las credenciales ingresadas no se encuentran registradas',
-        footer: '¿Tienes problemas con tu inicio de sesion? Comunicate con el area administrativa'
-      })
-  } else { 
-    Swal.fire({
-        icon: 'error',
-        title: 'Credenciales incorrectas',
-        text: 'Las credenciales ingresadas no se encuentran registradas',
-        footer: '¿Tienes problemas con tu inicio de sesion? Comunicate con el area administrativa'
-      })
+              //console.log(userStore)
 
-    console.error('Error al autenticar:', error);
-  }
-  }
+              console.log(usuario.credential);
+              switch (true) {
+
+                    
+                    case usuario.credential === "mecanico":
+                      userStore.setUser(usuario);     // Debe setearse aca de lo contrario siempre carga por defecto el mismo
+                      console.log('entre al mecanico')
+                      this.$router.push('./inicio-mecanico');
+                      break;
+
+                    case usuario.credential === "admin": 
+                      userStore.setUser(usuario);  // Se debe volver hacer aqui
+                      console.log('entre al Admin')
+                      this.$router.push('./inicio-admin');
+                      break;
+                  }
+            } catch (error) {
+              if (error.response && error.response.status === 404) { 
+                console.log('Entre')
+                  Swal.fire({
+                  icon: 'error',
+                  title: 'Credenciales incorrectas',
+                  text: 'Las credenciales ingresadas no se encuentran registradas.',
+                  footer: '¿Tienes problemas con tu inicio de sesión? Comunícate con el área administrativa.'
+                })
+            } else { 
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Credenciales incorrectas',
+                  text: 'Las credenciales ingresadas no se encuentran registradas.',
+                  footer: '¿Tienes problemas con tu inicio de sesión? Comunícate con el área administrativa.'
+                })
+
+              console.error('Error al autenticar:', error);
+            }
+            }
+          }else{
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Campos incompletos',
+                        text: 'Por favor, asegúrate de completar todos los campos correctamente',
+                        footer: ''
+                      });
+              } 
+
 },
   MostrarContraseña() {
       this.showPassword = !this.showPassword;

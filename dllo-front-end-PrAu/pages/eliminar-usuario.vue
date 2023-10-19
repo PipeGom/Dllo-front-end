@@ -6,20 +6,18 @@
     <v-card class="carta">
       <img src="../src/logo.jpg" class="imagen"/>
 
-      <v-form @submit.prevent @submit="buscarUsuario" >
+      <v-form  ref="form1" @submit.prevent @submit="buscarUsuario" >
         <v-text-field
         v-model="nameBuscar"
         :counter="20"
-        
+        :rules="nameRules1"
         label="Nombre"
         required
-        
-        
       ></v-text-field>
 
       <v-btn type="submit" class="boton rounded-pill" >Buscar</v-btn>
       </v-form>
-    <v-form class="formulario"  fast-fail @submit.prevent @submit="modificarUsuario" >
+    <v-form class="formulario"  fast-fail @submit.prevent @submit="EliminarUsuario" >
 
         <v-text-field
         v-model="name"
@@ -140,8 +138,12 @@ data() {
     nameBuscar:'',
     name: '',
     nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 20) || 'Name must be less than 10 characters',
+        v => !!v || 'El campo es obligatorio.',
+        v => (v && v.length <= 20) || 'El nombre debe tener menos de 20 caracteres',
+      ],
+      nameRules1: [
+        v => !!v || 'El campo es obligatorio.',
+        v => (v && v.length <= 20) || 'El nombre debe tener menos de 20 caracteres',
       ],
     email: '',
     password: '',
@@ -179,100 +181,132 @@ data() {
 },
 methods: {
 
-  async buscarUsuario(){
-    try{
-    const responseBuscar = await axios.get('http://localhost:3000/user');
-    const usuarioExistente = responseBuscar.data.find(user => user.nombre === this.nameBuscar);
-    
-      this.user = usuarioExistente
-      this.id = usuarioExistente.id
-      this.name = usuarioExistente.nombre
-      this.credential = usuarioExistente.credential 
-      this.email = usuarioExistente.email
-      this.password = usuarioExistente.password
-      this.passwordConfirm = usuarioExistente.password
-    
-    if (usuarioExistente) {  
-      Swal.fire({
-        icon: 'success',
-        title: 'Usuario encontrado',
-        text: '',
-        footer: ''
-      });
-    } else{
-      
-      Swal.fire({
-        icon: 'error',
-        title: 'El usuario no existe',
-        text: '',
-        footer: ''
-      });
-    } } catch(error){
-          Swal.fire({
-            icon: 'error',
-            title: 'El usuario no existe',
-            text: '',
-            footer: ''
-          });
-      console.error('Error al autenticar:', error);
-    }   
+  async validateBuscar () {
+    const { valid } = await this.$refs.form1.validate()
+    //console.log('Validation result for nameBuscar:', valid);
+    return valid;
   },
-    async modificarUsuario() {
- try {
-    if (this.user) {
 
-      const deletedUser = {
-        nombre: this.name,
-        email: this.email,
-        password: this.password,
-        credential: this.credential
-      };
-      
+  async buscarUsuario(){
 
-      const result = await Swal.fire({
-              title: 'Alerta de eliminación',
-              text: '¿Esta seguro de eliminar este usuario?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Eliminar',
-              confirmButtonColor: '#3085d6',
-              cancelButtonText: 'Cancelar',
-              cancelButtonColor: '#d33'
-            });
+    const validacion1 = await this.validateBuscar()
 
-      if (result.isConfirmed){
 
-        await axios.delete(`http://localhost:3000/user/${this.id}`, deletedUser);
-        
-        Swal.fire({
-              title: 'Eliminación exitosa',
-              text: 'El usuario fue eliminado correctamente.',
-              icon: 'success',
-            });
+    if(validacion1){
+            try{
+            const responseBuscar = await axios.get('http://localhost:3000/user');
+            const usuarioExistente = responseBuscar.data.find(user => user.nombre === this.nameBuscar);
+            
+              this.user = usuarioExistente
+              this.id = usuarioExistente.id
+              this.name = usuarioExistente.nombre
+              this.credential = usuarioExistente.credential 
+              this.email = usuarioExistente.email
+              this.password = usuarioExistente.password
+              this.passwordConfirm = usuarioExistente.password
+            
+            if (usuarioExistente) {  
+              Swal.fire({
+                icon: 'success',
+                title: 'Usuario encontrado',
+                text: '',
+                footer: ''
+              });
+            } else{
+              
+              Swal.fire({
+                icon: 'error',
+                title: 'El usuario no existe',
+                text: '',
+                footer: ''
+              });
+            } } catch(error){
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'El usuario no existe',
+                    text: '',
+                    footer: ''
+                  });
+              console.error('Error al autenticar:', error);
+            }   
+          }else{
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Es necesario ingresar el nombre del usuario',
+                        text: '',
+                        footer: ''
+                      });
+              } 
+  },
+    async EliminarUsuario() {
+    
+      const validacion1 = await this.validateBuscar()
 
-            this.limpiarCampos();
+      if(validacion1){
+  
+            try {
+                if (this.user) {
 
-      }else{
+                  const deletedUser = {
+                    nombre: this.name,
+                    email: this.email,
+                    password: this.password,
+                    credential: this.credential
+                  };
+                  
 
-        Swal.fire({
-              title: 'Eliminación cancelada',
-              text: 'El usuario no fue eliminado',
-              icon: 'error',
-            });
-      }
-    }
-          
-    }catch (error) {
+                  const result = await Swal.fire({
+                          title: 'Alerta de eliminación',
+                          text: '¿Esta seguro de eliminar este usuario?',
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonText: 'Eliminar',
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonText: 'Cancelar',
+                          cancelButtonColor: '#d33'
+                        });
 
-      Swal.fire({
-              title: 'Usuario invalido',
-              text: 'No ha ingresado un usuario vaido para eliminar',
-              icon: 'error',
-            });
-        
+                  if (result.isConfirmed){
 
-    console.error('Error al eliminar el usuario:', error);
-  }
+                    await axios.delete(`http://localhost:3000/user/${this.id}`, deletedUser);
+                    
+                    Swal.fire({
+                          title: 'Eliminación exitosa',
+                          text: 'El usuario fue eliminado correctamente.',
+                          icon: 'success',
+                        });
+
+                        this.limpiarCampos();
+
+                  }else{
+
+                    Swal.fire({
+                          title: 'Eliminación cancelada',
+                          text: 'El usuario no fue eliminado',
+                          icon: 'error',
+                        });
+                  }
+                }
+                      
+                }catch (error) {
+
+                  Swal.fire({
+                          title: 'Usuario inválido',
+                          text: 'No ha ingresado un usuario válido para eliminar.',
+                          icon: 'error',
+                        });
+                    
+
+                console.error('Error al eliminar el usuario:', error);
+              }
+            }else{
+              Swal.fire({
+                        icon: 'error',
+                        title: 'Es necesario ingresar el nombre del usuario a eliminar.',
+                        text: '',
+                        footer: ''
+                      });
+            }
 },
 limpiarCampos(){
         this.nameBuscar=''
