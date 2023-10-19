@@ -173,7 +173,7 @@ methods: {
                     icon: 'error',
                     title: 'Usuario ya registrado',
                     text: 'El usuario con este correo electrónico ya está registrado.',
-                    footer: '<a href="./Login.vue">¿Olvidaste tu contraseña?</a>'
+                    footer: '<a href="./index.vue">¿Olvidaste tu contraseña?</a>'
                   });
                 } else {
                 
@@ -184,7 +184,7 @@ methods: {
                     icon: 'success',
                     title: 'Registro exitoso',
                     text: '¡Te has registrado con éxito!',
-                    footer: '<a href="./Login">Iniciar sesión</a>'
+                    footer: '<a href="./index">Iniciar sesión</a>'
                   });
                 }
               } catch (error) {
