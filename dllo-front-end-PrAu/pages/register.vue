@@ -184,7 +184,7 @@ methods: {
                     icon: 'success',
                     title: 'Registro exitoso',
                     text: '¡Te has registrado con éxito!',
-                    footer: '<a href="./index">Iniciar sesión</a>'
+                    footer: ''
                   });
                 }
               } catch (error) {

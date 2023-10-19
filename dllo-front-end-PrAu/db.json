@@ -139,6 +139,27 @@
       "nombre": "Jhon",
       "id": 12,
       "credential": "admin"
+    },
+    {
+      "email": "Pruebita3@gmail.com",
+      "password": "Buenas",
+      "nombre": "Pruebiita",
+      "id": 13,
+      "credential": "mecanico"
+    },
+    {
+      "email": "Pruebitaaa3@gmail.com",
+      "password": "Buenas",
+      "nombre": "Pruebiitaa",
+      "id": 14,
+      "credential": "mecanico"
+    },
+    {
+      "email": "Carro2@gmail.com",
+      "password": "Carrito",
+      "nombre": "Holi",
+      "id": 15,
+      "credential": "mecanico"
     }
   ],
   "auto": [
