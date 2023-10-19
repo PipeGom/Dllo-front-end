@@ -201,6 +201,18 @@
       "horas_reparacion": 2,
       "id_auto": 3,
       "id": 9
+    },
+    {
+      "precio_reparacion": 11,
+      "horas_reparacion": 2,
+      "id_auto": 7,
+      "id": 10
+    },
+    {
+      "precio_reparacion": 2391,
+      "horas_reparacion": 9000,
+      "id_auto": 7,
+      "id": 11
     }
   ],
   "inventario": [

@@ -15,7 +15,7 @@
       <v-card-text class="textos">Automovil: {{car.marca}} {{ car.modelo }}</v-card-text>
       <v-card-text class="textos">Comentario: {{car.comentario}}</v-card-text>
 
-      <v-btn type="submit" class="boton rounded-pill" >Actualizar</v-btn>
+      <v-btn type="submit" class="boton" >Buscar</v-btn>
       </v-form>
       </v-card>
       </div>
@@ -55,7 +55,7 @@ rel="stylesheet">
               title="Actualizando Auto"
             ></v-toolbar>
               <v-form @submit.prevent="PostApi" class="frm1">
-                <v-text-field variant="solo-inverted" v-model="id_auto" label="ID del auto" required>{{ car.id }}</v-text-field>
+                <v-card-text variant="solo-inverted" v-model="id_auto" label="ID del auto" required>{{ car.id }}</v-card-text>
                 <v-text-field variant="solo-inverted" v-model="price" label="Coste de la reparacion" required></v-text-field>
                 <v-text-field variant="solo-inverted" v-model="time" label="Tiempo estimado" required></v-text-field>
             <v-card-actions class="justify-end">
@@ -171,6 +171,7 @@ export default{
       .then(resp=>{
           console.log(resp);
           this.GetApi();
+          alert("El seguimiento ha sido registrado ");
       })
       .catch(err=>{
           console.log(err);
