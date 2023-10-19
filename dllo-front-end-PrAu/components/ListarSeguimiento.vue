@@ -7,7 +7,7 @@
         v-model="nameBuscar"
 
         
-        label="Nombre"
+        label="Matricula"
         required
         
         
