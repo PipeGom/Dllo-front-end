@@ -51,6 +51,15 @@
       "marca": "Shakira cars ",
       "placa": "SHA124",
       "id": 5
+    },
+    {
+      "nombre": "MSD",
+      "cedula": "23",
+      "numero": "23",
+      "modelo": "S",
+      "marca": "D",
+      "placa": "D",
+      "id": 6
     }
   ],
   "user": [

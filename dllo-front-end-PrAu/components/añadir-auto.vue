@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="sw12-container">
         <v-btn color="primary" @click="dialog = true">
             Añadir un vehiculo
         </v-btn>
-
-        <v-dialog v-model="dialog" width="80%" persistent>
-            <v-card>
+      <div class="sw12-container" >
+        <v-dialog v-model="dialog" width="80%" persistent append-to-body>
+            <v-card class="sw12-container">
                 <v-card-item>
                     <v-card-title>Gestión de Vehiculos</v-card-title>
                     <v-card-subtitle>Formulario para la gestión de los automoviles del taller.</v-card-subtitle>
@@ -51,11 +51,13 @@
 
             </v-card>
         </v-dialog>
+      </div>
     </div>
 </template>
 <script setup>
 import axios from "axios";
 import { ref, computed } from 'vue';
+import Swal from 'sweetalert2'
 
 
 const cedulaRulesx = [
@@ -87,7 +89,6 @@ const telefonoRulesx = [
 ]
 
 const formIsValid = computed(() => {
-  // Verificar si se cumplen todas las reglas de validación
   console.log("valdidaciones", verificador1 && verificador2)
   return (verificador2.value && verificador3.value);
 });
@@ -116,14 +117,56 @@ const verificador1 = ref(false)
 const verificador2 =  ref(false)
 const verificador3 = ref(false)
 
+
+//-----------------------------------GUARDAR VEHICULO --------------------------------------
+
 const saveCar = async () => {
-    console.log("values de los autos", auto.value)
-    const result = await axios.post("http://localhost:3000/autos", auto.value)
+  try {
+      dialog.value = false
+
+    const result = await Swal.fire({
+      title: 'Alerta de creación',
+      text: '¿Esta seguro de guardar este auto?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Crear',
+      confirmButtonColor: '#3085d6',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#d33'
+    });
+  if (result.isConfirmed){
+    const response = await axios.post("http://localhost:3000/autos", auto.value)
+    Swal.fire({
+      title: 'Creación exitosa',
+      text: 'El auto fue guardado correctamente.',
+      icon: 'success',
+    });
     location.reload()
-}
+  } else{
+    Swal.fire({
+              title: 'Guardado cancelado',
+              text: 'El auto no fue guardado',
+              icon: 'error',
+            });
+          }
+  }catch (error) {
+      Swal.fire({
+            title: 'Error',
+            text: 'Error al crear el artículo',
+            icon: 'error',
+          });
+        }
+  }
+  
 
 
 
 
 
 </script>
+
+<style>
+.sw12-container {
+  z-index: X;
+}
+</style>
