@@ -62,7 +62,7 @@
           <v-card-title>Editar Articulo</v-card-title>
             <v-card-text>
               <!-- Muestra la información del artículo aquí -->
-              <v-text-field v-model="articuloSeleccionado.nombre" label="Nombre"></v-text-field>
+              <v-text-field v-model="nuevoArticulo.nombre" label="Nombre"></v-text-field>
               <v-text-field v-model="articuloSeleccionado.id" label="Referencia"></v-text-field>
               <v-text-field v-model="articuloSeleccionado.precio" label="Precio"></v-text-field>
               <v-text-field v-model="articuloSeleccionado.cantidad" label="Cantidad"></v-text-field>
@@ -80,12 +80,10 @@
         <v-card>
           <v-card-title>Crear Artículo</v-card-title>
           <v-card-text>
-            <!-- Formulario para crear un nuevo artículo -->
-            <v-text-field v-model="nuevoArticulo.nombre" label="Nombre"></v-text-field>
-            <v-text-field v-model="nuevoArticulo.precio" label="Precio"></v-text-field>
-            <v-text-field v-model="nuevoArticulo.cantidad" label="Cantidad"></v-text-field>
+            <v-text-field v-model="nuevoArticulo.nombre" label="Nombre" :error-messages="validationErrors.nombre"></v-text-field>
+            <v-text-field v-model="nuevoArticulo.precio" label="Precio" :error-messages="validationErrors.precio"></v-text-field>
+            <v-text-field v-model="nuevoArticulo.cantidad" label="Cantidad" :error-messages="validationErrors.cantidad"></v-text-field>
             <v-text-field v-model="nuevoArticulo.descripcion" label="Descripción"></v-text-field>
-            <!-- Agrega más campos según sea necesario -->
           </v-card-text>
           <v-card-actions>
             <v-btn color="blue darken-1" text @click="cerrarModal2">Cancelar</v-btn>
@@ -119,6 +117,11 @@
       await CargarArticulos(articulos);
     });
 
+    definePageMeta({
+      layout: "inicio-admin-layout",
+    });
+
+
     const CargarArticulos = async (articulos) => {
       const url = "http://localhost:3000/inventario";
       try {
@@ -130,14 +133,39 @@
     };
 
     const nuevoArticulo = ref({
-    nombre: '',
+    nombre: '1 ',
     precio: 0,
     cantidad: 0,
-    descripcion: '',
-    imagen: "default.jpg",
-    id: ''
+    descripcion: 'gh',
+   // imagen: "default.jpg",
+    id: 'gdfer'
     });
 
+    // Define las reglas de validación para cada campo.
+    const validationRules = {
+      nombre: [(v) => !!v || 'El nombre es obligatorio'],
+      precio: [(v) => v > 0 || 'El precio debe ser mayor que cero'],
+      cantidad: [(v) => v > 0 || 'La cantidad debe ser mayor que cero'],
+      //descripcion: [(v) => !!v || 'La descripción es obligatoria'],
+    };
+
+    // Define los mensajes de error para cada campo.
+    const validationErrors = {
+      nombre: 'Campo obligatorio',
+      precio: 'campo obligatorio',
+      cantidad: 'La cantidad debe ser mayor que cero',
+      //descripcion: 'campo obligatorio',
+    };
+
+    // Agrega validaciones a los campos.
+    watch(nuevoArticulo, (nuevoArticulo) => {
+      for (const field in validationRules) {
+        validationRules[field].forEach((rule) => {
+          const errorMessage = rule(nuevoArticulo[field]);
+          validationErrors[field] = errorMessage;
+        });
+      }
+    }, { deep: true });
     
 //--------------------------------------Crear Articulo---------------------------------------------
 
@@ -145,8 +173,39 @@
       mostrarModal2.value = true;
     }
 
-    const guardarNuevoArticulo = async () => {
-    try {
+    const guardarNuevoArticulo = async () => { 
+      for (const field in validationRules) {
+        const fieldValidations = validationRules[field];
+        validationErrors[field] = fieldValidations
+          .map((rule) => rule(nuevoArticulo[field]))
+          .find((errorMessage) => errorMessage); // Asigna el primer mensaje de error no nulo.
+      }
+
+      // Verifica si hay algún mensaje de error en los campos.
+      for (const field in validationErrors) {
+        if (validationErrors[field]) {
+
+          mostrarModal2.value = false
+
+          console.log(" no hace la peticion post")
+
+          Swal.fire({
+            icon: 'error',
+            title: 'Registro fallido',
+            text: 'La información ingresada es inválida.',
+            footer: ''
+          });
+
+          return; // No se envía la solicitud si hay errores de validación.
+
+
+        }else{
+          console.log("hace la peticion post")
+        }
+        
+      }
+
+      try{
 
       mostrarModal2.value = false;
 
@@ -162,7 +221,8 @@
             });
 
       if (result.isConfirmed){
-
+      
+      console.log("hace la peticion post")
       const response = await axios.post('http://localhost:3000/inventario', nuevoArticulo.value);
 
       Swal.fire({
@@ -185,7 +245,7 @@
               icon: 'error',
             });
           }
-    }catch (error) {
+        }catch (error) {
       Swal.fire({
             title: 'Error',
             text: 'Error al crear el artículo',
@@ -193,6 +253,7 @@
           });
         }
       };
+      
 
 //----------------------------------------Editar Articulo----------------------------------------------
 
@@ -315,7 +376,9 @@
       guardarCambios,
       cerrarModal,
       cerrarModal2,
-      EliminarArticulo
+      EliminarArticulo,
+      validationErrors,
+      validationRules
     }
 }}
 </script>

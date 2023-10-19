@@ -1,9 +1,65 @@
 {
   "autos": [
     {
-      "modelo": "CARRENEITOR",
-      "placa": "JHK232",
-      "id": 12
+      "nombre": "Carlos Moreno",
+      "cedula": "1203472309",
+      "numero": "3046906969",
+      "correo": "yuya@gmail.com",
+      "direccion": "Calle 24D #81 19",
+      "modelo": "BotsVaguen edicion coleccionista ",
+      "marca": "BotsVaguen",
+      "placa": "BOT902",
+      "id": 1
+    },
+    {
+      "nombre": "Cris gonzales",
+      "cedula": "df2",
+      "numero": "3054n34",
+      "correo": "ospina",
+      "direccion": "mlsm",
+      "modelo": "chino",
+      "marca": "2",
+      "placa": "2",
+      "id": 2
+    },
+    {
+      "cedula": "232345",
+      "correo": "correo@gmail.com",
+      "numero": "123455",
+      "nombre": "Belindo Scamelo",
+      "direccion": "pelinqueles #208",
+      "modelo": "Rappidin",
+      "marca": "Polaca",
+      "placa": "POE234",
+      "id": 3
+    },
+    {
+      "nombre": "Chinchin one trejo",
+      "cedula": "1345",
+      "numero": "13",
+      "modelo": "POLA",
+      "marca": "12",
+      "placa": "1",
+      "correo": "correo@gmail.com",
+      "id": 4
+    },
+    {
+      "nombre": "Jhon Leyson",
+      "cedula": "230459321",
+      "numero": "23456764",
+      "modelo": "Shaki-car",
+      "marca": "Shakira cars ",
+      "placa": "SHA124",
+      "id": 5
+    },
+    {
+      "nombre": "MSD",
+      "cedula": "23",
+      "numero": "23",
+      "modelo": "S",
+      "marca": "D",
+      "placa": "D",
+      "id": 6
     }
   ],
   "user": [
@@ -76,6 +132,13 @@
       "nombre": "okk",
       "id": 11,
       "credential": ""
+    },
+    {
+      "email": "Jhon@gmail.com",
+      "password": "123",
+      "nombre": "Jhon",
+      "id": 12,
+      "credential": "admin"
     }
   ],
   "auto": [
@@ -144,22 +207,6 @@
       "cantidad": 12,
       "imagen": "amortiguador.jpg",
       "descripcion": "Estos controlan el movimiento excesivo de la carrocería y las llantas, reducen el rebote, la inclinación y el balanceo del vehículo, así como la inclinación al frenar y el descenso al acelerar."
-    },
-    {
-      "nombre": "piston",
-      "precio": "124343",
-      "cantidad": "23",
-      "descripcion": "ewewdsds",
-      "imagen": "default.jpg",
-      "id": "iHMrz6m"
-    },
-    {
-      "nombre": "mofle",
-      "precio": "2355",
-      "cantidad": "14",
-      "descripcion": "descripción",
-      "imagen": "default.jpg",
-      "id": "Kv-HzIJ"
     }
   ]
 }
