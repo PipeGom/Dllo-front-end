@@ -1,8 +1,11 @@
 <template>
   <div class="sw12-container">
-    <v-btn color="primary" @click="dialog = true">
+    <v-container class="d-flex justify-center align-center">
+      <v-btn class="boton rounded-pill" @click="dialog = true" style="">
       Añadir un vehiculo
     </v-btn>
+    </v-container>
+    
     <div class="sw12-container">
       <v-dialog v-model="dialog" width="80%" persistent append-to-body>
         <v-card class="sw12-containerx">
@@ -36,6 +39,12 @@
                 <v-text-field label="Modelo *" v-model="auto.modelo" required placeholder="Ingrese el modelo del vehículo" />
                 <v-text-field label="Marca *" v-model="auto.marca" required placeholder="Ingrese la Marca del vehículo" />
                 <v-text-field label="Placa *" v-model="auto.placa" required placeholder="Ingrese la placa del vehículo" />
+                <v-textarea
+                  label="Descripción"
+                  v-model="auto.descripcion"
+                  placeholder="Escribe el motivo por el que fue ingresado el vehiculo"
+                  rows="4" 
+                ></v-textarea>
               </v-card>
 
               <v-btn type="submit" :disabled="!formIsValid">Enviar</v-btn>
