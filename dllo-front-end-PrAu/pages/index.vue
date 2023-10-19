@@ -68,7 +68,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import { useUserStore } from '../stores/user';
 definePageMeta({
-layout: "blank",
+layout: "default",
 });
 export default {
 data() {
