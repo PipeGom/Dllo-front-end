@@ -5,7 +5,7 @@
     <div class="container">
     <v-card class="carta">
       <img src="../src/logo.jpg" class="imagen"/>
-    <v-form class="formulario"  fast-fail @submit.prevent @submit="register" >
+    <v-form class="formulario" ref="form"  fast-fail @submit.prevent @submit="register" >
 
         <v-text-field
         v-model="name"
@@ -149,35 +149,56 @@ data() {
   };
 },
 methods: {
-    async register() {
-      try {
-        
-        const response = await axios.get('http://localhost:3000/user');
-        const usuarioExistente = response.data.find(user => user.email === this.email);
+    async validate () {
+        const { valid } = await this.$refs.form.validate()
+        return valid;
+      },
 
-        if (usuarioExistente) {
+    async register() {
+
+      const validacion = await this.validate()   // se debe esperar la peticion
+      //console.log('El formulario es',validacion)
+
       
-          Swal.fire({
-            icon: 'error',
-            title: 'Usuario ya registrado',
-            text: 'El usuario con este correo electrónico ya está registrado.',
-            footer: '<a href="./Login.vue">¿Olvidaste tu contraseña?</a>'
-          });
-        } else {
-         
-          await axios.post('http://localhost:3000/user', { email: this.email, password: this.password, nombre: this.name, id:null, credential: this.credential});
-          
-        
-          Swal.fire({
-            icon: 'success',
-            title: 'Registro exitoso',
-            text: '¡Te has registrado con éxito!',
-            footer: '<a href="./Login">Iniciar sesión</a>'
-          });
-        }
-      } catch (error) {
-        console.error('Error al registrar usuario:', error);
-        
+      if(validacion){
+      
+              try {
+                
+                const response = await axios.get('http://localhost:3000/user');
+                const usuarioExistente = response.data.find(user => user.email === this.email);
+
+                if (usuarioExistente) {
+              
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario ya registrado',
+                    text: 'El usuario con este correo electrónico ya está registrado.',
+                    footer: '<a href="./Login.vue">¿Olvidaste tu contraseña?</a>'
+                  });
+                } else {
+                
+                  await axios.post('http://localhost:3000/user', { email: this.email, password: this.password, nombre: this.name, id:null, credential: this.credential});
+                  
+                
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Registro exitoso',
+                    text: '¡Te has registrado con éxito!',
+                    footer: '<a href="./Login">Iniciar sesión</a>'
+                  });
+                }
+              } catch (error) {
+                console.error('Error al registrar usuario:', error);
+                
+              }
+      }else{
+              Swal.fire({
+                          icon: 'error',
+                          title: 'Registro fallido',
+                          text: 'La información ingresada es inválida.',
+                          footer: ''
+                        });
+
       }
     }
 

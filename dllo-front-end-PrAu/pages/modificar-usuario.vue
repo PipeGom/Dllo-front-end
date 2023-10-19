@@ -6,10 +6,11 @@
     <v-card class="carta">
       <img src="../src/logo.jpg" class="imagen"/>
 
-      <v-form @submit.prevent @submit="buscarUsuario" >
+      <v-form  ref="form1" fast-fail @submit.prevent @submit="buscarUsuario" >
         <v-text-field
         v-model="nameBuscar"
-        :counter="20"
+        :counter="10"
+        :rules="nameRules1"
         
         label="Nombre"
         required
@@ -19,7 +20,7 @@
 
       <v-btn type="submit" class="boton rounded-pill" >Buscar</v-btn>
       </v-form>
-    <v-form class="formulario"  fast-fail @submit.prevent @submit="modificarUsuario" >
+    <v-form class="formulario" ref="form" fast-fail @submit.prevent @submit="modificarUsuario" >
 
         <v-text-field
         v-model="name"
@@ -35,6 +36,7 @@
       v-model="email"
       label="Correo"
       :rules="emailRules"
+      required
     ></v-text-field>
 
     <v-text-field
@@ -43,6 +45,7 @@
       v-model="password"
       label="Contraseña"
       :rules="passwordRules"
+      required
      
     ></v-text-field>
 
@@ -51,6 +54,7 @@
       v-model="passwordConfirm"
       label="Confimar contraseña"
       :rules="passwordConfirmRules"  
+      required
     ></v-text-field>
 
       <v-select
@@ -59,6 +63,7 @@
     :items="['admin', 'mecanico']"
     v-model="credential"
     :rules="credentialRules"
+    required
     
   ></v-select>
 
@@ -140,8 +145,12 @@ data() {
     nameBuscar:'',
     name: '',
     nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 20) || 'Name must be less than 10 characters',
+        v => !!v || 'El campo es obligatorio.',
+        v => (v && v.length <= 10) || 'El nombre debe tener menos de 20 caracteres',
+      ],
+    nameRules1: [
+        v => !!v || 'El campo es obligatorio.',
+        v => (v && v.length <= 10) || 'El nombre debe tener menos de 20 caracteres',
       ],
     email: '',
     password: '',
@@ -179,100 +188,153 @@ data() {
 },
 methods: {
 
+  async validateActualizar () {
+        const { valid } = await this.$refs.form.validate()
+        console.log('Validation result for nameBuscarActalizar:', valid);
+        return valid;
+      },
+  async validateBuscar () {
+    const { valid } = await this.$refs.form1.validate()
+    console.log('Validation result for nameBuscar:', valid);
+    return valid;
+  },
+
   async buscarUsuario(){
-    try{
-    const responseBuscar = await axios.get('http://localhost:3000/user');
-    const usuarioExistente = responseBuscar.data.find(user => user.nombre === this.nameBuscar);
+
+    const validacion1 = await this.validateBuscar()
     
-      this.user = usuarioExistente
-      this.id = usuarioExistente.id
-      this.name = usuarioExistente.nombre
-      this.credential = usuarioExistente.credential 
-      this.email = usuarioExistente.email
-      this.password = usuarioExistente.password
-      this.passwordConfirm = usuarioExistente.password
-    
-    if (usuarioExistente) {  
-      Swal.fire({
-        icon: 'success',
-        title: 'Usuario encontrado',
-        text: '',
-        footer: ''
-      });
-    } else{
-      
-      Swal.fire({
-        icon: 'error',
-        title: 'El usuario no existe',
-        text: '',
-        footer: ''
-      });
-    } } catch(error){
-          Swal.fire({
-            icon: 'error',
-            title: 'El usuario no existe',
-            text: '',
-            footer: ''
-          });
-      console.error('Error al autenticar:', error);
-    }   
+    console.log(validacion1)
+
+          if(validacion1){
+                try{
+                const responseBuscar = await axios.get('http://localhost:3000/user');
+                const usuarioExistente = responseBuscar.data.find(user => user.nombre === this.nameBuscar);
+
+                
+                
+                  this.user = usuarioExistente
+                  this.id = usuarioExistente.id
+                  this.name = usuarioExistente.nombre
+                  this.credential = usuarioExistente.credential 
+                  this.email = usuarioExistente.email
+                  this.password = usuarioExistente.password
+                  this.passwordConfirm = usuarioExistente.password
+                
+                if (usuarioExistente) {  
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Usuario encontrado',
+                    text: '',
+                    footer: ''
+                  });
+                } else{
+                  
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'El usuario no existe',
+                    text: '',
+                    footer: ''
+                  });
+                } } catch(error){
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'El usuario no existe',
+                        text: '',
+                        footer: ''
+                      });
+                  console.error('Error al autenticar:', error);
+                }  
+              }else{
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Es necesario ingresar el nombre del usuario',
+                        text: '',
+                        footer: ''
+                      });
+              } 
+
   },
     async modificarUsuario() {
- try {
-    if (this.user) {
 
-      const updatedUser = {
-        nombre: this.name,
-        email: this.email,
-        password: this.password,
-        credential: this.credential
-      };
-      
+      const validacion = await this.validateActualizar()  
+      const validacion2 = await this.validateBuscar()
 
-      const result = await Swal.fire({
-              title: 'alerta de actualización',
-              text: '¿Esta seguro de actualizar este usuario?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Actualizar',
-              confirmButtonColor: '#3085d6',
-              cancelButtonText: 'Cancelar',
-              cancelButtonColor: '#d33'
-            });
+      if(validacion2){
 
-      if (result.isConfirmed){
+      if(validacion){ 
 
-        await axios.put(`http://localhost:3000/user/${this.id}`, updatedUser);
-        
-        Swal.fire({
-              title: 'Actualización exitosa',
-              text: 'El usuario fue actualizado correctamente.',
-              icon: 'success',
-            });
+            try {
+                if (this.user) {
 
-            this.limpiarCampos();
+                  const updatedUser = {
+                    nombre: this.name,
+                    email: this.email,
+                    password: this.password,
+                    credential: this.credential
+                  };
+                  
 
-      }else{
+                  const result = await Swal.fire({
+                          title: 'alerta de actualización',
+                          text: '¿Esta seguro de actualizar este usuario?',
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonText: 'Actualizar',
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonText: 'Cancelar',
+                          cancelButtonColor: '#d33'
+                        });
 
-        Swal.fire({
-              title: 'Actualización cancelada',
-              text: 'El usuario no fue actualizado',
-              icon: 'error',
-            });
-      }
-    }
-          
-    }catch (error) {
+                  if (result.isConfirmed){
 
-      Swal.fire({
-              title: 'Usuario invalido',
-              text: 'No ha ingresado un usuario vaido para actualizar',
-              icon: 'error',
-            });
-        
+                    await axios.put(`http://localhost:3000/user/${this.id}`, updatedUser);
+                    
+                    Swal.fire({
+                          title: 'Actualización exitosa',
+                          text: 'El usuario fue actualizado correctamente.',
+                          icon: 'success',
+                        });
 
-    console.error('Error al actualizar el usuario:', error);
-  }
+                        this.limpiarCampos();
+
+                  }else{
+
+                    Swal.fire({
+                          title: 'Actualización cancelada',
+                          text: 'El usuario no fue actualizado',
+                          icon: 'error',
+                        });
+                  }
+                }
+                      
+                }catch (error) {
+
+                  Swal.fire({
+                          title: 'Usuario invalido',
+                          text: 'No ha ingresado un usuario vaido para actualizar',
+                          icon: 'error',
+                        });
+                    
+
+                console.error('Error al actualizar el usuario:', error);
+              }}else{
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Actualización fallida.',
+                        text: 'La información ingresada no es valida para actualizar',
+                        footer: ''
+                      });
+              }
+
+            }else{
+              Swal.fire({
+                        icon: 'error',
+                        title: 'Es necesario ingresar el nombre del usuario',
+                        text: '',
+                        footer: ''
+                      });
+            }
+
 },
 limpiarCampos(){
         this.nameBuscar=''
