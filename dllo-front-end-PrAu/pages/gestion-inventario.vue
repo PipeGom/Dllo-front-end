@@ -82,9 +82,9 @@
         <v-card>
           <v-card-title>Crear Artículo</v-card-title>
           <v-card-text>
-            <v-text-field v-model="nuevoArticulo.nombre" label="Nombre" :error-messages="validationErrors.nombre"></v-text-field>
-            <v-text-field v-model="nuevoArticulo.precio" label="Precio" :error-messages="validationErrors.precio"></v-text-field>
-            <v-text-field v-model="nuevoArticulo.cantidad" label="Cantidad" :error-messages="validationErrors.cantidad"></v-text-field>
+            <v-text-field v-model="nuevoArticulo.nombre" label="Nombre" :error-messages="validationErrors.nombre ? validationErrors.nombre : []"></v-text-field>
+            <v-text-field v-model="nuevoArticulo.precio" label="Precio" :error-messages="validationErrors.precio ? validationErrors.precio : []"></v-text-field>
+            <v-text-field v-model="nuevoArticulo.cantidad" label="Cantidad" :error-messages="validationErrors.cantidad ? validationErrors.cantidad : []"></v-text-field>
             <v-text-field v-model="nuevoArticulo.descripcion" label="Descripción"></v-text-field>
           </v-card-text>
           <v-card-actions>
@@ -114,6 +114,7 @@
     const mostrarModal = ref(false);
     const mostrarModal2 = ref(false);
     const articuloSeleccionado = ref({});
+    const mostrarMensajesError = ref(false);
 
     onBeforeMount(async () => {
       await CargarArticulos(articulos);
@@ -176,85 +177,58 @@
     }
 
     const guardarNuevoArticulo = async () => { 
-      for (const field in validationRules) {
-        const fieldValidations = validationRules[field];
-        validationErrors[field] = fieldValidations
-          .map((rule) => rule(nuevoArticulo[field]))
-          .find((errorMessage) => errorMessage); // Asigna el primer mensaje de error no nulo.
-      }
+      mostrarMensajesError.value = true;
+      console.log(nuevoArticulo);
 
-      // Verifica si hay algún mensaje de error en los campos.
-      for (const field in validationErrors) {
-        if (validationErrors[field]) {
-
-          mostrarModal2.value = false
-
-          console.log(" no hace la peticion post")
-
-          Swal.fire({
-            icon: 'error',
-            title: 'Registro fallido',
-            text: 'La información ingresada es inválida.',
-            footer: ''
-          });
-
-          return; // No se envía la solicitud si hay errores de validación.
-
-
-        }else{
           console.log("hace la peticion post")
-        }
-        
-      }
+          try{
 
-      try{
+            mostrarModal2.value = false;
 
-      mostrarModal2.value = false;
+            const result = await Swal.fire({
+                    title: 'alerta de creación',
+                    text: '¿Esta seguro de crear este articulo?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Crear',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#d33'
+                  });
 
-      const result = await Swal.fire({
-              title: 'alerta de creación',
-              text: '¿Esta seguro de crear este articulo?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Crear',
-              confirmButtonColor: '#3085d6',
-              cancelButtonText: 'Cancelar',
-              cancelButtonColor: '#d33'
+            if (result.isConfirmed){
+
+            console.log("hace la peticion post")
+            const response = await axios.post('http://localhost:3000/inventario', nuevoArticulo.value);
+
+            Swal.fire({
+                  title: 'Creación exitosa',
+                  text: 'El artículo fue creado correctamente.',
+                  icon: 'success',
+                });
+
+            mostrarModal2.value = false;
+
+            // Limpia los campos del nuevo artículo.
+            Object.keys(nuevoArticulo.value).forEach((key) => {
+              nuevoArticulo.value[key] = '';
             });
+            } else{
 
-      if (result.isConfirmed){
-      
-      console.log("hace la peticion post")
-      const response = await axios.post('http://localhost:3000/inventario', nuevoArticulo.value);
-
-      Swal.fire({
-            title: 'Creación exitosa',
-            text: 'El artículo fue creado correctamente.',
-            icon: 'success',
-          });
-
-      mostrarModal2.value = false;
-
-      // Limpia los campos del nuevo artículo.
-      Object.keys(nuevoArticulo.value).forEach((key) => {
-        nuevoArticulo.value[key] = '';
-      });
-    } else{
-
-        Swal.fire({
-              title: 'Creación cancelada',
-              text: 'El articulo no fue creado',
-              icon: 'error',
-            });
-          }
-        }catch (error) {
-      Swal.fire({
-            title: 'Error',
-            text: 'Error al crear el artículo',
-            icon: 'error',
-          });
-        }
-      };
+              Swal.fire({
+                    title: 'Creación cancelada',
+                    text: 'El articulo no fue creado',
+                    icon: 'error',
+                  });
+                }
+              }catch (error) {
+            Swal.fire({
+                  title: 'Error',
+                  text: 'Error al crear el artículo',
+                  icon: 'error',
+                });
+              }
+    };
       
 
 //----------------------------------------Editar Articulo----------------------------------------------
@@ -381,6 +355,7 @@
       EliminarArticulo,
       validationErrors,
       validationRules,
+      mostrarMensajesError,
       watch
     }
 }}
