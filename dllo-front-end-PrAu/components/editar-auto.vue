@@ -6,7 +6,7 @@
                     <v-card-title>Edición de auto {{ editingCars.modelo }}</v-card-title>
                 </v-card-item>
                 <v-card-text>
-                    <form action="javascript:void(0)" @submit="saveCar">
+                    <form action="javascript:void(0)" @submit="saveCar" >
 
                         <v-text-field label="Modelo" v-model="editingCars.modelo" required placeholder="Ingrese el modelo del Vehiculo" />
 

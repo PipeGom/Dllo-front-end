@@ -25,7 +25,7 @@
                 <tr v-for="item in autosFiltrados" :key="item.placa">
                     <td>
                         <!--<img-expandible></img-expandible>-->
-                    <img src="../src/carro de ejemplo.jpg" alt="Mi Imagen"  class = "imagen-limitada"/>
+                    
                     </td>
                     <td>{{ item.modelo }}</td>
                     <td>{{ item.placa }}</td>
