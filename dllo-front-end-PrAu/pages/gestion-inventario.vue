@@ -19,7 +19,7 @@
                 <v-card-title id="Titulo">{{ articulo.nombre }}</v-card-title>
               </v-card-item>
               <v-card-subtitle>
-                <span class="me-1">Ref {{ articulo.Ref }}</span>
+                <span class="me-1">Ref {{ articulo.id }}</span>
               </v-card-subtitle>
               <v-card-text>
                 <div>
@@ -46,6 +46,9 @@
                 <v-btn color="deep-purple-lighten-2" variant="text" @click="EditarArticulo(articulo)">
                   Editar Articulo
                 </v-btn>
+                <v-btn color="deep-purple-lighten-2" variant="text" @click="EliminarArticulo(articulo)">
+                  Eliminar Articulo
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -58,7 +61,7 @@
             <v-card-text>
               <!-- Muestra la información del artículo aquí -->
               <v-text-field v-model="articuloSeleccionado.nombre" label="Nombre"></v-text-field>
-              <v-text-field v-model="articuloSeleccionado.Ref" label="Referencia"></v-text-field>
+              <v-text-field v-model="articuloSeleccionado.id" label="Referencia"></v-text-field>
               <v-text-field v-model="articuloSeleccionado.precio" label="Precio"></v-text-field>
               <v-text-field v-model="articuloSeleccionado.cantidad" label="Cantidad"></v-text-field>
               <v-text-field v-model="articuloSeleccionado.descripcion" label="Descripción"></v-text-field>
@@ -66,7 +69,7 @@
             </v-card-text>
             <v-card-actions>
               <v-btn color="blue darken-1" text @click="cerrarModal">Cancelar</v-btn>
-              <v-btn color="blue darken-1" @click="guardarCambios">Guardar</v-btn>
+              <v-btn color="blue darken-1" @click="guardarCambios(articulo)">Guardar</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -76,6 +79,7 @@
   <script>
   import { ref, onBeforeMount } from "vue";
   import axios from "axios";
+  import Swal from 'sweetalert2'
   
   export default {
     data() {
@@ -87,7 +91,7 @@
     setup() {
     const articulos = ref([]);
     const mostrarModal = ref(false);
-    const articuloSeleccionado = ref(null);
+    const articuloSeleccionado = ref({});
 
     onBeforeMount(async () => {
       await CargarArticulos(articulos);
@@ -101,21 +105,54 @@
       } catch (error) {
         console.error("Error al cargar los artículos:", error);
       }
-    }
+    };
 
-    const EditarArticulo = (articulo) => {
-      articuloSeleccionado.value = articulo;
-      mostrarModal.value = true;
-    }
+      const EditarArticulo = (articulo) => {
+        articuloSeleccionado.value = articulo;
+        mostrarModal.value = true;
+      };
+      
+      const guardarCambios = async () => {
+        try {
+
+          await axios.put(`http://localhost:3000/inventario/${articuloSeleccionado.value.id}`, articuloSeleccionado.value);
+
+          Swal.fire({
+            title: 'Actualización exitosa',
+            text: 'El artículo fue actualizado correctamente.',
+            icon: 'success',
+          });
+
+          mostrarModal.value = false;
+        } catch (error) {
+          Swal.fire({
+            title: 'Error',
+            text: 'Error al actualizar el artículo',
+            icon: 'error',
+          });
+        }
+      };
+
+      const EliminarArticulo = () => {
+        mostrarModal.value = false;
+      };
+
+      const cerrarModal = () => {
+        mostrarModal.value = false;
+      };
 
     return {
       articulos,
       EditarArticulo,
       mostrarModal,
-      articuloSeleccionado
-    };
-  }
+      articuloSeleccionado,
+      guardarCambios,
+      cerrarModal,
+      EliminarArticulo
+    }
 }
+}
+
 </script>
 
   <style>
@@ -128,5 +165,5 @@
   #tituloo2 {
     padding-top: 0.1px;
   }
-  </style>
+</style>
   

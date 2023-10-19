@@ -96,11 +96,6 @@
       "id": 5
     },
     {
-      "modelo": "2",
-      "marca": "2",
-      "precio_reparacion": 2,
-      "horas_reparacion": 2,
-      "comentario": "e",
       "modelo": "RT12R",
       "marca": "RUF",
       "precio_reparacion": 10000,
@@ -112,7 +107,7 @@
   "inventario": [
     {
       "nombre": "Faro delantero",
-      "Ref": "00001",
+      "id": "00001",
       "precio": 130000,
       "cantidad": 3,
       "imagen": "Faro-delantero.jpeg",
@@ -120,23 +115,23 @@
     },
     {
       "nombre": "Frenos",
-      "Ref": "00002",
       "precio": 328000,
       "cantidad": 7,
       "imagen": "Frenos.jpg",
-      "descripcion": "El freno de carro, es un mecanismo, más o menos sencillo, que fricciona las ruedas de un carro para reducir su velocidad. Normalmente no permite detener la marcha del carro"
+      "descripcion": "el freno de carro, es un mecanismo, más o menos sencillo, que fricciona las ruedas de un carro para reducir su velocidad. Normalmente no permite detener la marcha del carro",
+      "id": "00002"
     },
     {
       "nombre": "Neumatico 17",
-      "Ref": "00003",
+      "id": "00003",
       "precio": 240000,
-      "cantidad": 21,
+      "cantidad": "19",
       "imagen": "neumatico17.jpg",
       "descripcion": "Es un neumático para ejes de dirección y tracción, destinado a vehículos de transporte de pasajeros de uso urbano y suburbano, con un elevado grado de abrasión de la banda de rodadura"
     },
     {
       "nombre": "Rin 17",
-      "Ref": "00004",
+      "id": "00004",
       "precio": 486000,
       "cantidad": 17,
       "imagen": "Rin17.jpg",
@@ -144,7 +139,7 @@
     },
     {
       "nombre": "Turbo",
-      "Ref": "00005",
+      "id": "00005",
       "precio": 600000,
       "cantidad": 5,
       "imagen": "turbo.jpg",
@@ -152,7 +147,7 @@
     },
     {
       "nombre": "Amortiguador",
-      "Ref": "00006",
+      "id": "00006",
       "precio": 345000,
       "cantidad": 12,
       "imagen": "amortiguador.jpg",
