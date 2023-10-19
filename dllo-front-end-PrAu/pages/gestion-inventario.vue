@@ -133,13 +133,57 @@
         }
       };
 
-      const EliminarArticulo = () => {
-        mostrarModal.value = false;
-      };
+      const EliminarArticulo = async (articulo) => {
+        try {
 
+
+        const result = await Swal.fire({
+              title: 'Alerta de eliminación',
+              text: '¿Esta seguro de eliminar este articulo?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Eliminar',
+              confirmButtonColor: '#3085d6',
+              cancelButtonText: 'Cancelar',
+              cancelButtonColor: '#d33'
+            });
+
+      if (result.isConfirmed){
+
+        await axios.delete(`http://localhost:3000/inventario/${articulo.id}`, articuloSeleccionado.value);
+
+        const index = articulos.value.findIndex((a) => a.id === articulo.id);
+        if (index !== -1) {
+          articulos.value.splice(index, 1);
+        }
+
+        Swal.fire({
+              title: 'Eliminación exitosa',
+              text: 'El Articulo fue eliminado correctamente.',
+              icon: 'success',
+            });
+
+      }else{
+
+        Swal.fire({
+              title: 'Eliminación cancelada',
+              text: 'El usuario no fue eliminado',
+              icon: 'error',
+            });
+        }
+
+      }catch (error) {
+        Swal.fire({
+          title: 'Error',
+          text: 'No se puede eliminar el articulo seleccionado',
+          icon: 'error',
+      });
+    }
+  }
       const cerrarModal = () => {
         mostrarModal.value = false;
       };
+    
 
     return {
       articulos,
@@ -150,8 +194,7 @@
       cerrarModal,
       EliminarArticulo
     }
-}
-}
+}}
 
 </script>
 

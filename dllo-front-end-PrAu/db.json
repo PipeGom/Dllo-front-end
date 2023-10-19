@@ -124,10 +124,10 @@
     {
       "nombre": "Neumatico 17",
       "id": "00003",
-      "precio": 240000,
-      "cantidad": "19",
-      "imagen": "neumatico17.jpg",
-      "descripcion": "Es un neumático para ejes de dirección y tracción, destinado a vehículos de transporte de pasajeros de uso urbano y suburbano, con un elevado grado de abrasión de la banda de rodadura"
+      "precio": 180000,
+      "cantidad": 13,
+      "imagen": "Neumatico17.jpg",
+      "descripcion": "Llanta con diseño deportivo en V que permite una mejor adeherencia en piso mojado, no produce ruido ni vibraciones, ofrece confort al conducir."
     },
     {
       "nombre": "Rin 17",
