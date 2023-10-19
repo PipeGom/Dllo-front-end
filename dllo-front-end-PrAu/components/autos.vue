@@ -5,6 +5,7 @@
             v-model="search"
             label="Buscar autos"
             class="mb-3"
+            placeholder="Ingrese la placa o el nombre del cliente"
             @input="filtrarAutos"
         ></v-text-field>
         <v-table>
@@ -12,6 +13,9 @@
                 <tr>
                     <th>
                         
+                    </th>
+                    <th class="text-left">
+                        Cliente
                     </th>
                     <th class="text-left">
                         Modelo
@@ -27,8 +31,10 @@
                         <!--<img-expandible></img-expandible>-->
                     
                     </td>
+                    <td>{{ item.nombre }}</td>
                     <td>{{ item.modelo }}</td>
                     <td>{{ item.placa }}</td>
+
                     
                     <td>
                         <v-btn icon="mdi-pencil" variant="text" @click="editCar(item)">
@@ -92,7 +98,7 @@ const updateTask = (isUpdated) => {
 const filtrarAutos = () => {
     // print("este es el search", search.value)
     autosFiltrados.value = autos.value.filter(auto =>
-        auto.modelo.toLowerCase().includes(search.value.toLowerCase()) ||
+        auto.nombre.toLowerCase().includes(search.value.toLowerCase()) ||
         auto.placa.toLowerCase().includes(search.value.toLowerCase())
     );
 };

@@ -1,9 +1,56 @@
 {
   "autos": [
     {
-      "modelo": "CARRENEITOR",
-      "placa": "JHK232",
-      "id": 12
+      "nombre": "Carlos Moreno",
+      "cedula": "1203472309",
+      "numero": "3046906969",
+      "correo": "yuya@gmail.com",
+      "direccion": "Calle 24D #81 19",
+      "modelo": "BotsVaguen edicion coleccionista ",
+      "marca": "BotsVaguen",
+      "placa": "BOT902",
+      "id": 1
+    },
+    {
+      "nombre": "Cris gonzales",
+      "cedula": "df2",
+      "numero": "3054n34",
+      "correo": "ospina",
+      "direccion": "mlsm",
+      "modelo": "chino",
+      "marca": "2",
+      "placa": "2",
+      "id": 2
+    },
+    {
+      "cedula": "232345",
+      "correo": "correo@gmail.com",
+      "numero": "123455",
+      "nombre": "Belindo Scamelo",
+      "direccion": "pelinqueles #208",
+      "modelo": "Rappidin",
+      "marca": "Polaca",
+      "placa": "POE234",
+      "id": 3
+    },
+    {
+      "nombre": "Chinchin one trejo",
+      "cedula": "1345",
+      "numero": "13",
+      "modelo": "POLA",
+      "marca": "12",
+      "placa": "1",
+      "correo": "correo@gmail.com",
+      "id": 4
+    },
+    {
+      "nombre": "Jhon Leyson",
+      "cedula": "230459321",
+      "numero": "23456764",
+      "modelo": "Shaki-car",
+      "marca": "Shakira cars ",
+      "placa": "SHA124",
+      "id": 5
     }
   ],
   "user": [
