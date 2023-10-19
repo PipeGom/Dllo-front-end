@@ -116,6 +116,13 @@
       "nombre": "",
       "id": 10,
       "credential": ""
+    },
+    {
+      "email": "l",
+      "password": "",
+      "nombre": "okk",
+      "id": 11,
+      "credential": ""
     }
   ],
   "auto": [
@@ -184,6 +191,22 @@
       "cantidad": 12,
       "imagen": "amortiguador.jpg",
       "descripcion": "Estos controlan el movimiento excesivo de la carrocería y las llantas, reducen el rebote, la inclinación y el balanceo del vehículo, así como la inclinación al frenar y el descenso al acelerar."
+    },
+    {
+      "nombre": "piston",
+      "precio": "124343",
+      "cantidad": "23",
+      "descripcion": "ewewdsds",
+      "imagen": "default.jpg",
+      "id": "iHMrz6m"
+    },
+    {
+      "nombre": "mofle",
+      "precio": "2355",
+      "cantidad": "14",
+      "descripcion": "descripción",
+      "imagen": "default.jpg",
+      "id": "Kv-HzIJ"
     }
   ]
 }
