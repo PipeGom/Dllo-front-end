@@ -23,8 +23,10 @@
         <v-list density="compact" nav>
           
           <v-list-item prepend-icon="mdi-account-multiple" title="Gestionar usuarios" to="gestion-usuarios" ></v-list-item>
-          <v-list-item prepend-icon="mdi-star" title="Gestionar Inventario" to="gestion-inventario" ></v-list-item>
           <v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" to="Login" ></v-list-item>
+          <v-list-item prepend-icon="mdi-star" title="Gestionar Autos" to="autos-crud" ></v-list-item>
+          <v-list-item prepend-icon="mdi-logout" title="Cerrar sesión" to="Login" ></v-list-item>
+          
         </v-list>
       </v-navigation-drawer>
 

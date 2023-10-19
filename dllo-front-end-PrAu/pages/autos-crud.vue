@@ -6,3 +6,7 @@
         <autos></autos>
     </h1>
 </template>
+
+<script>
+
+</script>
