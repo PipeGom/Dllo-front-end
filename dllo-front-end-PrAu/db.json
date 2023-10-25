@@ -53,13 +53,34 @@
       "id": 5
     },
     {
-      "nombre": "MSD",
-      "cedula": "23",
-      "numero": "23",
-      "modelo": "S",
-      "marca": "D",
-      "placa": "D",
-      "id": 6
+      "nombre": "Horacio el lacio",
+      "cedula": "123456789",
+      "numero": "234567",
+      "modelo": "ELESTADISTICO",
+      "marca": "STADISTICS SA",
+      "placa": "STD123",
+      "descripcion": "Necesita un cambio de aceite",
+      "id": 7
+    },
+    {
+      "nombre": "Fabriccio Curoseka",
+      "cedula": "638386836",
+      "numero": "234567",
+      "modelo": "Destructor de Hamburguesas 30-90",
+      "marca": "Toyota",
+      "placa": "DST232",
+      "descripcion": "Necesita cambiar los parabrisas ",
+      "id": 8
+    },
+    {
+      "nombre": "Leyson Adam Smith",
+      "cedula": "4567876543",
+      "numero": "2345678654",
+      "modelo": "TempoTertu",
+      "marca": "Obsidian",
+      "placa": "BON234",
+      "descripcion": "Tiene un llanta pinchada",
+      "id": 9
     }
   ],
   "user": [

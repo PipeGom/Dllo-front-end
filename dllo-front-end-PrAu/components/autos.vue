@@ -1,42 +1,40 @@
 <template>
-    <div class="mt-3">
-        <h3>Listado de autos</h3>
-        <v-text-field
+    <v-container style="padding: 200 px;">
+    <div class="mt-3 carta" >
+    
+        <v-text-field rounded="lg" 
             v-model="search"
             label="Buscar autos"
-            class="mb-3"
+            class="pa-4"
             placeholder="Ingrese la placa o el nombre del cliente"
             @input="filtrarAutos"
         ></v-text-field>
-        <v-table class= "v-data-table thead th">
+        <v-table class= "v-data-table thead th  rounded-lg"  >
             <thead>
                 <tr>
-                    <th>
-                        
-                    </th>
-                    <th class="text-left">
+                    <th class="text-left" style="background-color: rgba(215, 204, 200, 0.8);; width: 25%;">
                         Cliente
                     </th>
-                    <th class="text-left">
+                    <th class="text-left " style="background-color: rgba(215, 204, 200, 0.8);;"   >
                         Modelo
                     </th>
-                    <th class="text-left">
+                    <th class="text-left" style="background-color: rgba(215, 204, 200, 0.8);"   >
                         Placa
+                    </th>
+                    <th class="text-left" style="background-color: rgba(215, 204, 200, 0.8);"   >
+                    
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in autosFiltrados" :key="item.placa">
-                    <td>
-                        <!--<img-expandible></img-expandible>-->
-                    
-                    </td>
-                    <td>{{ item.nombre }}</td>
+                <tr v-for="item in autosFiltrados" :key="item.placa" style="background-color: rgba(215, 204, 200, 0.8);">
+
+                    <td >{{ item.nombre }}</td>
                     <td>{{ item.modelo }}</td>
                     <td>{{ item.placa }}</td>
 
                     
-                    <td>
+                    <td style="background-color: rgba(215, 204, 200, 0.8);">
                         <v-btn icon="mdi-pencil" variant="text" @click="editCar(item)">
                         </v-btn>
                         <v-btn icon="mdi-delete-off" variant="text" @click="deleteCarx(item)">
@@ -48,6 +46,7 @@
         <editar-auto v-if="editingCars != null" :dialog="isEdit" :cars="editingCars" @update="updateCars" />
         
     </div>
+</v-container>
 </template>
 
 <style>
@@ -71,6 +70,7 @@ const search = ref('');
 onBeforeMount(() => {
     loadCars();
 });
+
 
 const loadCars = async () => {
     const url = "http://localhost:3000/autos";
@@ -145,24 +145,20 @@ Swal.fire({
 }
 
 
-
-
-
-
-
-
-
-
-
-
 </script>
 
 <style>
 .v-data-table thead th {
-  background-color: #f5f5f5;
+  background-color: rgba(215, 204, 200, 0.8);;
   color: #333;
   font-weight: bold;
   font-family: 'Arial, sans-serif'; /* Cambia el tipo de fuente */
   font-size: 16px; /* Cambia el tamaño de la fuente */
+}
+
+.carta{
+
+border-radius: 10px;
+background-color: rgba(215, 204, 200, 0.8);
 }
 </style>

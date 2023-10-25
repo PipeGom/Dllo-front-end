@@ -59,13 +59,18 @@
 </template>
 
 <script setup>
+
 import axios from "axios";
 import { ref, computed } from 'vue';
 import Swal from 'sweetalert2'
 
+const autos = ref([]);
+
+
 
 const cedulaRulesx = [
   value => {
+    loadCars()
     if (!value) return 'El campo es obligatorio.';
     if (/^\d+$/.test(value)) {
       verificador2.value = true
@@ -138,6 +143,9 @@ const saveCar = async () => {
     });
   if (result.isConfirmed){
     const response = await axios.post("http://localhost:3000/autos", auto.value)
+    
+    
+
     Swal.fire({
       title: 'Creación exitosa',
       text: 'El auto fue guardado correctamente.',
