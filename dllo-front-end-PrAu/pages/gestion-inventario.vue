@@ -4,11 +4,12 @@
       <v-container class="d-flex justify-center align-center">
         <v-btn class="boton rounded-pill" @click="CrearArticulo">Crear artículo</v-btn>
       </v-container>
+      <v-text-field v-model="busqueda" label="Buscar artículo" placeholder="Ingrese el nombre o id del articulo" outlined dense prepend-icon="mdi-magnify" class="search-field" @input="filtrarArticulos"></v-text-field>
       <div>
         <v-row>
           <v-col
             v-for="articulo in articulos" :key="articulo.Ref" cols="12" sm="6" md="4" lg="3">
-            <v-card :loading="loading" class="mx-auto my-4" style="height: 570px">
+            <v-card :loading="loading" class="mx-auto my-4" style="height: 590px">
               <template v-slot:loader="{ isActive }">
                 <v-progress-linear
                   :active="isActive"
@@ -19,7 +20,14 @@
               </template>
               <v-img class="responsive-image" max-height="280" :src="articulo.imagen"></v-img>
               <v-card-item>
-                <v-card-title id="Titulo">{{ articulo.nombre }}</v-card-title>
+                <v-row align="center">
+                    <v-col cols="auto">
+                        <v-card-title id="Titulo">{{ articulo.nombre }}</v-card-title>
+                    </v-col>
+                    <v-col cols="auto">
+                        <v-card-title class="my-4 text-subtitle-1">${{ articulo.precio }}</v-card-title>
+                    </v-col>            
+                </v-row>
               </v-card-item>
               <v-card-subtitle>
                 <span class="me-1">Ref {{ articulo.id }}</span>
@@ -111,13 +119,16 @@
     },
     setup() {
     const articulos = ref([]);
+    const articulosOriginales = ref([]);
+    const busqueda = ref('');
     const mostrarModal = ref(false);
     const mostrarModal2 = ref(false);
     const articuloSeleccionado = ref({});
     const mostrarMensajesError = ref(false);
 
     onBeforeMount(async () => {
-      await CargarArticulos(articulos);
+      await CargarArticulos(articulosOriginales);
+      articulos.value = [...articulosOriginales.value];
     });
 
     definePageMeta({
@@ -133,6 +144,14 @@
       } catch (error) {
         console.error("Error al cargar los artículos:", error);
       }
+    };
+
+    const filtrarArticulos = () => {
+      const textoBusqueda = busqueda.value.toLowerCase().trim();
+      articulos.value = articulosOriginales.value.filter((articulo) => {
+        return articulo.nombre.toLowerCase().includes(textoBusqueda) ||
+          articulo.id.toString().includes(textoBusqueda);
+      });
     };
 
     const nuevoArticulo = ref({
@@ -310,7 +329,7 @@
 
         Swal.fire({
               title: 'Eliminación exitosa',
-              text: 'El Articulo fue eliminado correctamente.',
+              text: 'El articulo fue eliminado correctamente.',
               icon: 'success',
             });
 
@@ -318,7 +337,7 @@
 
         Swal.fire({
               title: 'Eliminación cancelada',
-              text: 'El usuario no fue eliminado',
+              text: 'El articulo no fue eliminado',
               icon: 'error',
             });
         }
@@ -340,8 +359,10 @@
         mostrarModal2.value = false;
       };
 
-    return {
+      return {
       articulos,
+      busqueda,
+      filtrarArticulos,
       EditarArticulo,
       mostrarModal,
       mostrarModal2,
@@ -357,7 +378,7 @@
       validationRules,
       mostrarMensajesError,
       watch
-    }
+    };
 }}
 </script>
 
@@ -374,5 +395,21 @@
   #tituloo2 {
     padding-top: 0.1px;
   }
+
+.search-field {
+  width: 100%;
+  max-width: 3000px;  /* Ajusta el ancho máximo según tus preferencias */
+  margin: 0 auto;  /* Centra el campo de búsqueda horizontalmente */
+  border: 0px solid #ccc;  /* Borde del campo de búsqueda */
+  border-radius: 5px;  /* Bordes redondeados */
+}
+
+.search-field .v-text-field__slot input {
+  border: none;  /* Elimina el borde del input dentro del campo de búsqueda */
+}
+
+.search-field .v-text-field__slot input:focus {
+  outline: none;  /* Elimina el contorno de enfoque al hacer clic en el campo de búsqueda */
+}
 </style>
   

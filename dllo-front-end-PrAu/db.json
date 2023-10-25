@@ -234,7 +234,7 @@
       "precio": 130000,
       "cantidad": 3,
       "imagen": "Faro-delantero.jpeg",
-      "descripcion": "Los faros delanteros halógenos funcionan mediante el calentamiento de un filamento de tungsteno dentro de una lámpara. Cuando la corriente eléctrica pasa a través del filamento, se calienta y emite luz."
+      "descripcion": "Los faros delanteros halógenos funcionan mediante el calentamiento de un filamento de tungsteno dentro de una lámpara. Cuando la corriente pasa a través del filamento, calienta y emite luz."
     },
     {
       "nombre": "Frenos",
@@ -250,7 +250,7 @@
       "precio": 180000,
       "cantidad": 13,
       "imagen": "Neumatico17.jpg",
-      "descripcion": "Llanta con diseño deportivo en V que permite una mejor adeherencia en piso mojado, no produce ruido ni vibraciones, ofrece confort al conducir."
+      "descripcion": "llanta con diseño deportivo en V que permite una mejor adeherencia en piso mojado, no produce ruido ni vibraciones, ofrece confort al conducir."
     },
     {
       "nombre": "Rin 17",
