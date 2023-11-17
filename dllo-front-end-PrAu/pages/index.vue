@@ -2,7 +2,7 @@
     <div class="container">
     <v-card class="carta">
       <img src="../src/logo.jpg" class="imagen"/>
-    <v-form class="formulario" ref="form" fast-fail @submit.prevent @submit="login" >    
+    <v-form class="formulario" ref="form" fast-fail  @submit.prevent @submit="login" >    
     <v-text-field 
       type="email"
       v-model="email"
@@ -63,100 +63,132 @@ border-radius: 50%;
 overflow: hidden; 
 }
 </style>
-<script >
-import axios from 'axios';
+<script setup>
+
 import Swal from 'sweetalert2'
-import { useUserStore } from '../stores/user';
-definePageMeta({
-layout: "default",
-});
-export default {
-data() {
-  return {
-    email: '',
-    password: '',
-    showPassword: false,
-    passwordRules: [
-      value => {
-        if (value) return true;
-        return 'El campo es obligatorio.';
-      }
-    ],
-    user: [],
-    emailRules: [
-      value => {
-        if (value) return true;
-        return 'El campo es obligatorio.';
-      },
-      value => {
-        if (/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(value)) return true;
-        return 'Correo no válido.';
-      }
-    ]
-  };
-},
-methods: {
-  async validate () {
-        const { valid } = await this.$refs.form.validate()
-        return valid;
-      },
-async login() {
-  const validacion1 = await this.validate()
-  if(validacion1){
-            try {
-              const response = await axios.get('http://localhost:3000/user'); 
-              const usuario = response.data.find(user => user.email === this.email && user.password === this.password);
-              /*Se usa pinia para almacenar el estado global del usuario*/
-              /*Guardamos el usuario autenticado*/
-              const userStore = useUserStore();  
-              //console.log(userStore.getUser)
-              //console.log(userStore)
-              console.log(usuario.credential);
-              switch (true) {    
-                    case usuario.credential === "mecanico":
-                      userStore.setUser(usuario);     // Debe setearse aca de lo contrario siempre carga por defecto el mismo
-                      console.log('entre al mecanico')
-                      this.$router.push('./inicio-mecanico');
-                      break;
+import axios from 'axios';
+import config from '../config/default.json';
 
-                    case usuario.credential === "admin": 
-                      userStore.setUser(usuario);  // Se debe volver hacer aqui
-                      console.log('entre al Admin')
-                      this.$router.push('./inicio-admin');
-                      break;
-                  }
-            } catch (error) {
-              if (error.response && error.response.status === 404) { 
-                console.log('Entre')
-                  Swal.fire({
-                  icon: 'error',
-                  title: 'Credenciales incorrectas',
-                  text: 'Las credenciales ingresadas no se encuentran registradas.',
-                  footer: '¿Tienes problemas con tu inicio de sesión? Comunícate con el área administrativa.'
-                })
-            } else { 
-              Swal.fire({
-                  icon: 'error',
-                  title: 'Credenciales incorrectas',
-                  text: 'Las credenciales ingresadas no se encuentran registradas.',
-                  footer: '¿Tienes problemas con tu inicio de sesión? Comunícate con el área administrativa.'
-                })
+definePageMeta({layout:"blank"});
 
-              console.error('Error al autenticar:', error);
-            }
-            }
-          }else{
-                Swal.fire({
-                        icon: 'error',
-                        title: 'Campos incompletos',
-                        text: 'Por favor, asegúrate de completar todos los campos correctamente',
-                        footer: ''
-                      });
-              } 
-},
-  MostrarContraseña() {
-      this.showPassword = !this.showPassword;
-    },
-}
-};
+// definir variables del estado:
+const email= ref('Felipe22@udem.ude.co') // se usa para que no se borre es como un usestate
+const  password= ref('felipe2343')
+const showPassword= ref(true)
+const passwordRules=ref([
+        value => {
+          if (value) return true;
+          return 'El campo es obligatorio.'
+        },
+      ]) 
+const emailRules = ref([
+        value => {
+          if (value) return true;
+          return 'El campo es obligatorio.';
+        },
+        value => {
+          if (/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(value)) return true;
+          return 'Correo no válido.';
+        }
+      ])
+      
+    
+const login = async () => { 
+  
+
+  try {
+    console.log(config.api_host)
+
+
+    const url = `${config.api_host}/login`
+   // se captura el data de una promesa que se va a enviar por un post a esa url
+  const {data} = await axios.post(url,{email: email.value,password:password.value})
+  // sabemos que la estructura del res del api es ok,message,info
+  if(data?.ok==true){
+   // redireccionar al home, guardar el token  
+   console.log(data?.info);
+   console.log(data)
+   useRouter().push('./inicio-admin')
+  }else{
+    Swal.fire({
+      title:'Error!',
+      text:data?.message,
+      icon:'error'
+    })
+  }
+  } catch (error) {
+    Swal.fire({
+      title:'Error!',
+      text:'Ha ocurrido un error al conectarse',
+      icon:'error'
+    })
+  }
+   
+  }
+
+
+// 
+// 
+// import { useUserStore } from '../stores/user';
+// import config from '../config/default.json'
+
+// const email = ref('h@gmail.com')
+// const password = ref('123')
+// const showPassword = ref(false)
+// export default {
+// data() {
+//   return {  
+// 
+// },
+// methods: {
+//   async validate () {
+//         const { valid } = await this.$refs.form.validate()
+//         return valid;
+//       },
+// async login() {
+//   const validacion1 = await this.validate()
+//   if(validacion1){
+//     try {
+//     console.log(config.api_host);
+
+//     const url = `${config.api_host}/login`
+//     const { data } = await axios.post(url, { email: email.value, password: password.value })
+//     if (data?.ok == true) {
+//       // Redireccionar al home, guardar el token
+//       console.log(data?.info);
+//       //const token = data?.info?.token
+//       //localStorage.setItem('token', token)
+//       useRoute().push('./inicio-admin')
+//       // useRoute(')
+//     }
+//     else {
+//       Swal.fire({
+//         title: 'Error!',
+//         text: data?.message,
+//         icon: 'error'
+//       })
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     Swal.fire({
+//       title: 'Error!',
+//       text: 'Ha ocurrido un error al conectarse.',
+//       icon: 'error'
+//     })
+//   }
+  
+//           }else{
+//                 Swal.fire({
+//                         icon: 'error',
+//                         title: 'Campos incompletos',
+//                         text: 'Por favor, asegúrate de completar todos los campos correctamente',
+//                         footer: ''
+//                       });
+//               } 
+// },
+//   MostrarContraseña() {
+//       this.showPassword = !this.showPassword;
+//     },
+// }
+// };  
 </script>

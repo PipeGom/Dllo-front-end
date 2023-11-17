@@ -13,8 +13,8 @@
         <v-list  >
           <v-list-item
             prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-            :title="`Bienvenido ${usuario.nombre}!`"
-            :subtitle="`${usuario.email}`"
+            :title="`Bienvenido !`"
+            :subtitle="``"
           ></v-list-item>
         </v-list>
 
@@ -39,22 +39,9 @@
 <script>
 
 
-import { useUserStore } from '../stores/user';
 
 
 
-export default {
 
- 
-    computed: {
-    usuario() {
-      const userStore = useUserStore();
-      
-      return userStore.getUser;
-    },
-  },
- 
-  
-};
 
 </script>
