@@ -122,7 +122,10 @@ color:white;
 <script>
 import Swal from 'sweetalert2'
 import axios from 'axios';
-const baseURL="http://localhost:3000/seguimiento";
+const baseURL = `${config.api_host}/cars`
+//const baseURL="http://localhost:3001/seguimiento";
+const url = `${config.api_host}/cars`
+import config from '../config/default.json';
 import articulo_inventario from './articulo_inventario.vue';
   
 /*onBeforeMount(() => {
@@ -240,8 +243,13 @@ console.log(validacion1)
 
       if(validacion1){
             try{
-            const responseBuscar = await axios.get('http://localhost:3000/autos');
-            const autoJSON = responseBuscar.data.find(autos => autos.placa === this.nameBuscar);
+            const url = `${config.api_host}/cars`
+            const responseBuscar = await axios.get(url);
+            
+            const autoJSON = responseBuscar.data.find(cars => cars.info.placa === this.nameBuscar);
+            console.log(autoJSON)
+            console.log(info)
+            console.log(info.placa)
 
             
             
