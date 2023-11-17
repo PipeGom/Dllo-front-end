@@ -12,8 +12,8 @@
               <v-list  >
                 <v-list-item
                   prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-                  :title="`Bienvenido ${usuario.nombre}!`"
-                  :subtitle="`${usuario.email}`"
+                  :title="`Bienvenido ${a}!`"
+                  :subtitle="`${a}`"
                 ></v-list-item>
               </v-list>
       

@@ -108,7 +108,12 @@ const login = async () => {
    // redireccionar al home, guardar el token  
    console.log(data?.info);
    console.log(data)
+   const token = data?.info?.token
+   localStorage.setItem('token',token)
+   
+
    useRouter().push('./inicio-admin')
+
   }else{
     Swal.fire({
       title:'Error!',

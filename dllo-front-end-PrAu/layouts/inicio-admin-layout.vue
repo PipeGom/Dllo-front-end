@@ -3,7 +3,7 @@
         
    
   <v-card >
-    <v-layout  >
+    <v-layout v-if="!loading" >
       <v-navigation-drawer
         color="#D7CCC8"
         expand-on-hover
@@ -36,12 +36,28 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import axios from 'axios'
+import config from '../config/default.json'
 
+// con v-if en el layout no permitimos que se salten el login
+onBeforeMount(()=>{
+  
+  console.log(localStorage)
+  const token = localStorage.getItem('token')
+  if(token){
+    loading.value = false
+    const url = `${config.api_host}/verify`
+    axios.post(url,{token}).then(()=>{
 
-
-
-
-
+    }).catch(()=>{
+      useRouter().push('/')
+    })
+  }else{
+    useRouter().push('/')
+  }
+  console.log(token)
+})
+const loading = ref(true);
 
 </script>
