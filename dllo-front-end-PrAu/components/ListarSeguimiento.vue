@@ -13,7 +13,7 @@
         
       ></v-text-field>
       <v-card-text class="textos">Automovil: {{car.marca}} {{ car.modelo }}</v-card-text>
-      <v-card-text class="textos">Comentario: {{car.comentario}}</v-card-text>
+      <v-card-text class="textos">Comentario: {{car.descripcion}}</v-card-text>
 
       <v-btn type="submit" class="boton" >Buscar</v-btn>
       </v-form>
@@ -55,7 +55,8 @@ rel="stylesheet">
               title="Actualizando Auto"
             ></v-toolbar>
               <v-form @submit.prevent="PostApi" class="frm1">
-                <v-card-text variant="solo-inverted" v-model="id_auto" label="ID del auto" required>{{ car.id }}</v-card-text>
+                <v-card-text disabled hidden variant="solo-inverted" v-model="id_auto" label="ID del auto" required>{{ car.id }}</v-card-text>
+                <v-text-field disabled variant="solo-inverted">El id del auto es: {{ car.id }}</v-text-field>
                 <v-text-field variant="solo-inverted" v-model="price" label="Coste de la reparacion" required></v-text-field>
                 <v-text-field variant="solo-inverted" v-model="time" label="Tiempo estimado" required></v-text-field>
             <v-card-actions class="justify-end">
@@ -188,7 +189,7 @@ export default{
           console.log(err);
       });
     },
-    async UpdateApi(id,marca,modelo,precio_reparacion, horas_reparacion, comentario){
+    async UpdateApi(id,precio_reparacion, horas_reparacion){
       await axios
       .put(baseURL+'/'+id,{
         precio_reparacion:precio_reparacion,
