@@ -2,7 +2,7 @@
     <div class = "container">
 
         <v-container class="d-flex justify-center align-center" >
-            <h3> Gestión de Autos</h3>
+            
         </v-container>
         <añadir-auto></añadir-auto> 
         <autos></autos>
@@ -10,9 +10,9 @@
 </template>
 
 <script>
-definePageMeta({
-layout: "inicio-admin-layout",
-});
+ definePageMeta({
+ layout: "inicio-admin-layout",
+ });
 </script>
 
 <style>

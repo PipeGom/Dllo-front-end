@@ -63,6 +63,7 @@
 import axios from "axios";
 import { ref, computed } from 'vue';
 import Swal from 'sweetalert2'
+import config from '../config/default.json';
 
 const autos = ref([]);
 
@@ -70,7 +71,7 @@ const autos = ref([]);
 
 const cedulaRulesx = [
   value => {
-    loadCars()
+    // loadCars()
     if (!value) return 'El campo es obligatorio.';
     if (/^\d+$/.test(value)) {
       verificador2.value = true
@@ -142,7 +143,10 @@ const saveCar = async () => {
       cancelButtonColor: '#d33'
     });
   if (result.isConfirmed){
-    const response = await axios.post("http://localhost:3000/autos", auto.value)
+    const url = `${config.api_host}/cars`
+  
+    const response = await axios.post(url, auto.value)
+    
     
     
 
@@ -172,7 +176,8 @@ const saveCar = async () => {
   // Por ejemplo, en el componente:
 const cargarDatos = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/autos'); // Reemplaza con la URL de tus datos
+    const url = `${config.api_host}/cars`
+    const response = await axios.get(url); // Reemplaza con la URL de tus datos
     // Actualiza tus datos en el componente, por ejemplo:
     // this.tusDatos = response.data;
     auto.value = response.data; // En Vue 3 con Composition API

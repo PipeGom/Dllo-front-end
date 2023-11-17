@@ -60,6 +60,7 @@
 import axios from "axios";
 import { ref, onBeforeMount } from "vue";
 import Swal from 'sweetalert2'
+import config from '../config/default.json';
 
 const autos = ref([]);
 const autosFiltrados = ref([]);
@@ -73,15 +74,19 @@ onBeforeMount(() => {
 
 
 const loadCars = async () => {
-    const url = "http://localhost:3000/autos";
+    const url = `${config.api_host}/cars`
+    //const url = "http://localhost:3000/autos";
+    
     const { data } = await axios.get(url);
-    autos.value = data;
+    //console.log(data.info)
+    autos.value = data.info;
     filtrarAutos();
 };
 
 
 
 const editCar = async (item) => {
+
     isEdit.value = true;
     editingCars.value = { ...item };
 };
@@ -115,8 +120,9 @@ const result = await Swal.fire({
     });
 
 if (result.isConfirmed){
-
-    const url = `http://localhost:3000/autos/${item.id}`;
+    const url = `${config.api_host}/cars/${item._id}`;
+    console.log(url)
+    //const url = `http://localhost:3000/autos/${item.id}`;
     const { data } = await axios.delete(url);
     loadCars()
 Swal.fire({
